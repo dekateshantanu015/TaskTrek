@@ -1,0 +1,17 @@
+{
+  "name": "tasktrek",
+  "version": "1.0.0",
+  "description": "TaskTrek is a simple yet powerful to-do app that helps you stay organized. Create and manage tasks within customizable folders for different aspects of your life, such as Work, Personal, and Shopping.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --mode production"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^5.92.1",
+    "webpack-cli": "^5.1.4"
+  }
+}
