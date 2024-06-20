@@ -15,7 +15,7 @@
   \**********************/
 /***/ (() => {
 
-eval("const element = document.createElement('div');\nelement.innerHTML = 'Hello, Webpack!';\ndocument.body.appendChild(element);\n\n\n//# sourceURL=webpack://tasktrek/./src/index.js?");
+eval("\n\n//# sourceURL=webpack://tasktrek/./src/index.js?");
 
 /***/ })
 
