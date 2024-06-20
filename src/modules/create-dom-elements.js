@@ -34,7 +34,7 @@ const createTodoCard = (todo) => {
     const container = createDiv('todo-card');
     const checkbox = createInput('todo-card-input', 'checkbox');
     const title = createPara('todo-card-title');
-    const date = createpara('todo-card-date');
+    const date = createPara('todo-card-date');
     const editBtn = createBtn('todo-card-edit');
     const deleteBtn = createBtn('todo-card-delete');
 
