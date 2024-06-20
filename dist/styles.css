@@ -23,6 +23,38 @@ body{
     padding: 1rem;
 }
 
+/*##############################
+            MODAL
+##############################*/
+
+.modal {
+    position: absolute;
+    background-color: hsla(0, 0%, 0%, .3);
+    width: 100vw;
+    height: 100vh;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-form {
+    position: relative;
+    background-color: white;
+    border: 1px solid black;
+    padding: 1rem;
+}
+
+.modal-form-close {
+position: absolute;
+top: 0;
+right: 0;
+}
+
+.display-none {
+    display: none;
+}
+
 .footer {
     position: absolute;
     right: 16px;
