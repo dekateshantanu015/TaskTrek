@@ -41,6 +41,8 @@ const createTodoCard = (todo) => {
     checkbox.checked = todo.checked;
     title.innerText = todo.title;
     date.innerText = todo.date;
+    editBtn.innerText = "Edit";
+    deleteBtn.innerText = "X";
 
     container.append(checkbox, title, date, editBtn, deleteBtn);
 
