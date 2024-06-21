@@ -1,27 +1,33 @@
+import {
+  createProjectModalElements,
+  createTodoModalElements,
+} from "./create-dom-elements";
+import { createProject } from "./projects";
 import { createTodo, editTodo } from "./todos";
 
 const modal = document.querySelector(".modal");
 const modalForm = document.querySelector(".modal-form");
-const modalTitle = document.querySelector(".modal-form-legend");
-const titleInput = document.querySelector(".modal-form-title-input");
-const dateInput = document.querySelector(".modal-form-date-input");
 
 const closeModal = document.querySelector(".modal-form-close");
 closeModal.addEventListener("click", () => {
   modal.classList.add("display-none");
   modalForm.removeEventListener("submit", newTodoEvent);
   modalForm.removeEventListener("submit", editTodoEvent);
-  clearModal();
+  modalForm.removeEventListener("submit", newProjectEvent);
 });
 
-const clearModal = () => {
-  modalTitle.innerText = "Add new Todo";
-  titleInput.value = "";
-  dateInput.value = "";
+const openModal = () => {
+  createTodoModalElements("Add new Todo");
+  modalForm.addEventListener("submit", newTodoEvent);
+  modal.classList.remove("display-none");
 };
 
 const openEditModal = (todo, index) => {
-  modalTitle.innerText = "Edit Title";
+  createTodoModalElements("Edit todo");
+
+  const titleInput = document.querySelector(".modal-form-title-input");
+  const dateInput = document.querySelector(".modal-form-date-input");
+
   titleInput.value = todo.title;
   dateInput.value = todo.date;
   modal.classList.remove("display-none");
@@ -29,25 +35,38 @@ const openEditModal = (todo, index) => {
   modalForm.currentIndex = index;
 };
 
+const openProjectModal = () => {
+  createProjectModalElements("Create new Project");
+  modalForm.addEventListener("submit", newProjectEvent);
+  modal.classList.remove("display-none");
+};
+
 const newTodoEvent = (e) => {
+  const titleInput = document.querySelector(".modal-form-title-input");
+  const dateInput = document.querySelector(".modal-form-date-input");
   e.preventDefault();
   createTodo(titleInput.value, dateInput.value);
-  clearModal();
   modal.classList.add("display-none");
   modalForm.removeEventListener("submit", newTodoEvent);
 };
 
 const editTodoEvent = (e) => {
+  const titleInput = document.querySelector(".modal-form-title-input");
+  const dateInput = document.querySelector(".modal-form-date-input");
   e.preventDefault();
   editTodo(e.currentTarget.currentIndex, titleInput.value, dateInput.value);
-  clearModal();
   modal.classList.add("display-none");
   modalForm.removeEventListener("submit", editTodoEvent);
 };
 
-const openModal = () => {
-  modalForm.addEventListener("submit", newTodoEvent);
-  modal.classList.remove("display-none");
+const newProjectEvent = (e) => {
+  const titleInput = document.querySelector(".modal-form-title-input");
+  const descInput = document.querySelector(".modal-form-desc-input");
+
+  e.preventDefault();
+  createProject(titleInput.value, descInput.value);
+  modal.classList.add("display-none");
+  modalForm.removeEventListener("submit", newProjectEvent);
 };
 
-export { openModal, openEditModal };
+export { openModal, openEditModal, openProjectModal };

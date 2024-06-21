@@ -25,17 +25,17 @@ const createBtn = (className) => {
   btn.classList.add(className);
   return btn;
 };
-//createInput
-const createInput = (className, inputType) => {
-  const input = document.createElement("input");
-  input.classList.add(className);
-  input.setAttribute("type", inputType);
-  return input;
+//createCheckbox
+const createCheckbox = (className) => {
+  const checkbox = document.createElement("input");
+  checkbox.classList.add(className);
+  checkbox.setAttribute("type", "checkbox");
+  return checkbox;
 };
 
 const createTodoCard = (todo, index) => {
   const container = createDiv("todo-card");
-  const checkbox = createInput("todo-card-input", "checkbox");
+  const checkbox = createCheckbox("todo-card-input");
   const title = createPara("todo-card-title");
   const date = createPara("todo-card-date");
   const editBtn = createBtn("todo-card-edit");
@@ -59,6 +59,68 @@ const createTodoCard = (todo, index) => {
   return container;
 };
 
+const createLegend = (className) => {
+  const legend = document.createElement("legend");
+  legend.classList.add(className);
+  return legend;
+};
+
+const createLabel = (className) => {
+  const label = document.createElement("label");
+  label.classList.add(`${className}-label`);
+  label.setAttribute("for", `${className}-input`);
+  return label;
+};
+
+const createInput = (className, inputType) => {
+  const input = document.createElement("input");
+  input.classList.add(`${className}-input`);
+  input.setAttribute("type", inputType);
+  input.setAttribute("id", `${className}-input`);
+  input.setAttribute("name", `${className}-input`);
+  return input;
+};
+
+const createTextArea = (className) => {
+  const textArea = document.createElement("textarea");
+  textArea.classList.add(`${className}-input`);
+  textArea.setAttribute("id", `${className}-input`);
+  textArea.setAttribute("name", `${className}-input`);
+  return textArea;
+};
+
+const createTodoModalElements = (title) => {
+  const formFieldset = document.querySelector(".modal-form-fieldset");
+  const legend = createLegend("modal-form-legend");
+  const labelName = createLabel("modal-form-title");
+  const inputName = createInput("modal-form-title", "text");
+  const labelDate = createLabel("modal-form-date");
+  const inputDate = createInput("modal-form-date", "date");
+
+  legend.innerText = title;
+  labelName.innerText = "Name";
+  labelDate.innerText = "Date";
+
+  formFieldset.textContent = "";
+  formFieldset.append(legend, labelName, inputName, labelDate, inputDate);
+};
+
+const createProjectModalElements = (title) => {
+  const formFieldset = document.querySelector(".modal-form-fieldset");
+  const legend = createLegend("modal-form-legend");
+  const labelName = createLabel("modal-form-title");
+  const inputName = createInput("modal-form-title", "text");
+  const labelDesc = createLabel("modal-form-desc");
+  const inputDesc = createTextArea("modal-form-desc");
+
+  legend.innerText = title;
+  labelName.innerText = "Project Name";
+  labelDesc.innerText = "Project Description";
+
+  formFieldset.textContent = "";
+  formFieldset.append(legend, labelName, inputName, labelDesc, inputDesc);
+};
+
 export {
   createDiv,
   createH2,
@@ -66,4 +128,6 @@ export {
   createBtn,
   createInput,
   createTodoCard,
+  createTodoModalElements,
+  createProjectModalElements,
 };
