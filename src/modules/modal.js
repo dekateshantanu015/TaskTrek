@@ -12,6 +12,7 @@ modalForm.addEventListener("submit", (e) => {
   e.preventDefault();
   createTodo(titleInput.value, dateInput.value);
   clearModal();
+  modal.classList.add("display-none");
 });
 
 const clearModal = () => {

@@ -8,11 +8,6 @@ import {
 } from "./create-dom-elements";
 import { openModal } from "./modal";
 
-const todoContent = () => {
-  const newTodo = todos[0];
-  return newTodo;
-};
-
 const buildPage = () => {
   const mainContainer = createDiv("main-container");
   const title = createH2("project-title");
@@ -22,9 +17,9 @@ const buildPage = () => {
 
   title.innerText = "General";
   desc.innerText = "A general list of random todos";
-  todoContainer.append(todoContent());
   btn.innerText = "+";
   btn.addEventListener("click", () => openModal());
+  todos.forEach((todo) => todoContainer.append(createTodoCard(todo)));
 
   mainContainer.append(title, desc, todoContainer, btn);
   return mainContainer;
