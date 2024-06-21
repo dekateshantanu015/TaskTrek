@@ -67,6 +67,10 @@ const renderTodos = () => {
     return todo.type === currentPage.innerText;
   });
 
+  filterTodos.sort((a, b) => {
+    return new Date(a.date).valueOf() - new Date(b.date).valueOf();
+  });
+
   filterTodos.forEach((todo) => createTodoCard(todo));
 };
 
