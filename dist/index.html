@@ -1,61 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="./styles.css">
-<title>Task Trek</title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles.css" />
+    <title>Task Trek</title>
+  </head>
+  <body>
     <div class="content-container">
-        <header class="header">
-            <h1 class="header-title">Task Trek</h1>
-            <nav class="header-nav">
-                <h3>Home</h3>
-                <ul class="header-nav-list">
-                    <li class="header-nav-item"><a href="#">Today</a></li>
-                    <li class="header-nav-item"><a href="#">Upcoming</a></li>
-                    <li class="header-nav-item"><a href="#">General</a></li>
-                    <li class="header-nav-item"><a href="#">Trash</a></li>
-                </ul>
-            </nav>
-        </header>
+      <header class="header">
+        <h1 class="header-title">Task Trek</h1>
+        <nav class="header-nav">
+          <h3 class="header-nav-title">Home</h3>
+          <ul class="header-nav-list">
+            <li class="header-nav-item"><a href="#">Today</a></li>
+            <li class="header-nav-item"><a href="#">Upcoming</a></li>
+            <li class="header-nav-item"><a href="#">General</a></li>
+            <li class="header-nav-item"><a href="#">Trash</a></li>
+          </ul>
+          <h3 class="header-nav-title">Projects</h3>
+          <ul class="header-nav-list" id="projects-list">
+            <li class="header-nav-item"><a href="#">Work</a></li>
+            <li class="header-nav-item"><a href="#">Gym</a></li>
+          </ul>
+          <button class="header-nav-btn">Add new project</button>
+        </nav>
+      </header>
 
-        <main class="main">
-            <!-- <div class="main-container">
-                <h2 class="project-title">General</h2>
-                <p class="project-description">A generral list of project todos.</p>
-                <div class="todo-container">
-                    <div class="todo-card">
-                        <input type="checkbox" class="todo-card-input">
-                        <p class="todo-card-title">Title</p>
-                        <p class="todo-card-date">Date</p>
-                        <button class="todo-card-edit">Edit</button>
-                        <button class="todo-card-delete">X</button>
-                    </div>
-                </div>
-                <button class="todo-create">+</button>
-            </div> -->
-        </main>
+      <main class="main"></main>
 
-        <div class="modal display-none">
-            <form class="modal-form">
-                <fieldset class="modal-form-fieldset">
-                    <legend class="modal-form-legend">Add new todo</legend>
-                    <label class="modal-form-title-label" for="todo-form-title">Title</label>
-                    <input class="modal-form-title-input" type="text" id="todo-form-title" name="todo-form-title">
-                    <label class="modal-form-date-label" for="todo-form-date">Date</label>
-                    <input class="modal-form-date-input" type="date" id="todo-form-date" name="todo-form-date">
-                </fieldset>
-                <button class="modal-form-submit">Submit</button>
-                <a href="#" class="modal-form-close">x</a>
-            </form>
-        </div>
+      <div class="modal display-none">
+        <form class="modal-form">
+          <fieldset class="modal-form-fieldset">
+            <legend class="modal-form-legend">Add new todo</legend>
+            <label class="modal-form-title-label" for="todo-form-title">
+              Title
+            </label>
+            <input
+              class="modal-form-title-input"
+              type="text"
+              id="todo-form-title"
+              name="todo-form-title"
+            />
+            <label class="modal-form-date-label" for="todo-form-date">
+              Date
+            </label>
+            <input
+              class="modal-form-date-input"
+              type="date"
+              id="todo-form-date"
+              name="todo-form-date"
+            />
+          </fieldset>
+          <button class="modal-form-submit">Submit</button>
+          <a href="#" class="modal-form-close">x</a>
+        </form>
+      </div>
 
-        <footer class="footer">
-            <p class="footer-content">Created by <a class="footer-link" href="#">gigigigig</a></p>
-        </footer>
+      <footer class="footer">
+        <p class="footer-content">
+          Created by
+          <a class="footer-link" href="#">gigigigig</a>
+        </p>
+      </footer>
     </div>
     <script src="../dist/bundle.js"></script>
-</body>
+  </body>
 </html>
