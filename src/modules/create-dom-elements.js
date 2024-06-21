@@ -39,6 +39,7 @@ const createNavItem = (className, projectName) => {
 
   li.classList.add(className);
   liLink.classList.add(`${className}-link`);
+  liLink.setAttribute("href", "#");
   liLink.innerText = projectName;
 
   li.append(liLink);

@@ -1,5 +1,5 @@
 import { createTodoCard } from "./create-dom-elements";
-import { format, compareAsc } from "date-fns";
+import { format, compareAsc, addDays, eachDayOfInterval } from "date-fns";
 
 const todos = [
   {
@@ -61,18 +61,45 @@ const updateStatus = (index, value) => {
 const renderTodos = () => {
   const currentPage = document.querySelector(".project-title");
   const todoContainer = document.querySelector(".todo-container");
+  const filteredTodos = filterTodos(currentPage.innerText);
   todoContainer.textContent = "";
 
-  const filterTodos = todos.filter((todo, index) => {
-    todo.index = index;
-    return todo.type === currentPage.innerText;
-  });
+  filteredTodos.forEach((todo) => createTodoCard(todo));
+};
 
-  filterTodos.sort((a, b) => {
-    return compareAsc(new Date(a.date), new Date(b.date));
-  });
+const filterTodos = (currentPage) => {
+  if (currentPage === "Today") {
+    const filteredTodos = todos.filter((todo, index) => {
+      todo.index = index;
+      return todo.date === format(new Date(), "yyyy-MM-dd");
+    });
+    return filteredTodos;
+  } else if (currentPage === "Upcoming") {
+    const dates = eachDayOfInterval({
+      start: addDays(new Date(), 1),
+      end: addDays(new Date(), 7),
+    });
 
-  filterTodos.forEach((todo) => createTodoCard(todo));
+    dates.forEach((date, index) =>
+      dates.splice(index, 1, format(date, "yyyy-MM-dd"))
+    );
+
+    const filteredTodos = todos.filter((todo, index) => {
+      todo.index = index;
+      return dates.includes(todo.date);
+    });
+    return filteredTodos;
+  } else {
+    const filteredTodos = todos.filter((todo, index) => {
+      todo.index = index;
+      return todo.type === currentPage;
+    });
+
+    filteredTodos.sort((a, b) => {
+      return compareAsc(new Date(a.date), new Date(b.date));
+    });
+    return filteredTodos;
+  }
 };
 
 export { todos, createTodo, removeTodo, editTodo, updateStatus, renderTodos };

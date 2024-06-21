@@ -1,12 +1,9 @@
-import { todos } from "./modules/todos";
-import { buildGeneral } from "./modules/build-pages";
+import { buildGeneral, buildToday, buildUpcoming } from "./modules/build-pages";
 import { openProjectModal } from "./modules/modal";
 import { renderProjectNav } from "./modules/projects";
-z;
 
 const navBtn = document.querySelector(".header-nav-btn");
 const navLinks = document.querySelectorAll(".header-main-nav-link");
-main.append(buildPage());
 
 navBtn.addEventListener("click", () => {
   openProjectModal();
@@ -20,8 +17,10 @@ navLinks.forEach((link) => {
         buildGeneral();
         break;
       case "Today":
+        buildToday();
         break;
       case "Upcoming":
+        buildUpcoming();
         break;
       case "Trash":
         break;
