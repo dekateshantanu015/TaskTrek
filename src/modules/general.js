@@ -19,7 +19,9 @@ const buildPage = () => {
   desc.innerText = "A general list of random todos";
   btn.innerText = "+";
   btn.addEventListener("click", () => openModal());
-  todos.forEach((todo) => todoContainer.append(createTodoCard(todo)));
+  todos.forEach((todo, index) =>
+    todoContainer.append(createTodoCard(todo, index))
+  );
 
   mainContainer.append(title, desc, todoContainer, btn);
   return mainContainer;

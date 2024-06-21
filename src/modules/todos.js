@@ -27,10 +27,17 @@ const createTodo = (title, date) => {
   renderTodos();
 };
 
+const removeTodo = (index) => {
+  todos.splice(index, 1);
+  renderTodos();
+};
+
 const renderTodos = () => {
   const todoContainer = document.querySelector(".todo-container");
   todoContainer.textContent = "";
-  todos.forEach((todo) => todoContainer.append(createTodoCard(todo)));
+  todos.forEach((todo, index) =>
+    todoContainer.append(createTodoCard(todo, index))
+  );
 };
 
-export { todos, createTodo };
+export { todos, createTodo, removeTodo };
