@@ -1,4 +1,4 @@
-import { removeTodo } from "./todos";
+import { removeTodo, updateStatus } from "./todos";
 import { openEditModal } from "./modal";
 
 //createDiv
@@ -42,6 +42,9 @@ const createTodoCard = (todo, index) => {
   const deleteBtn = createBtn("todo-card-delete");
 
   checkbox.checked = todo.checked;
+  checkbox.addEventListener("click", () =>
+    updateStatus(index, checkbox.checked)
+  );
   title.innerText = todo.title;
   date.innerText = todo.date;
   editBtn.innerText = "Edit";
@@ -54,10 +57,6 @@ const createTodoCard = (todo, index) => {
   container.append(checkbox, title, date, editBtn, deleteBtn);
 
   return container;
-};
-
-const createModal = () => {
-  const container = createDiv("todo-modal");
 };
 
 export {

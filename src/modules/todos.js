@@ -5,19 +5,19 @@ const todos = [
     type: "general",
     checked: false,
     title: "Todo-title",
-    date: "dd-mm-yy",
+    date: "2022-07-20",
   },
   {
     type: "general",
     checked: false,
     title: "Todo-Title2",
-    date: "dd-mm-year",
+    date: "2022-07-21",
   },
   {
     type: "general",
     checked: false,
     title: "Todo-Title3",
-    date: "dd-mm-year",
+    date: "2022-07-22",
   },
 ];
 
@@ -44,6 +44,10 @@ const editTodo = (index, title, date) => {
   renderTodos();
 };
 
+const updateStatus = (index, value) => {
+  todos[index].checked = value;
+};
+
 const renderTodos = () => {
   const todoContainer = document.querySelector(".todo-container");
   todoContainer.textContent = "";
@@ -52,4 +56,4 @@ const renderTodos = () => {
   );
 };
 
-export { todos, createTodo, removeTodo, editTodo };
+export { todos, createTodo, removeTodo, editTodo, updateStatus };
