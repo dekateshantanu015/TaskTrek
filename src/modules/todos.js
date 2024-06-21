@@ -1,4 +1,5 @@
 import { createTodoCard } from "./create-dom-elements";
+import { format, compareAsc } from "date-fns";
 
 const todos = [
   {
@@ -68,7 +69,7 @@ const renderTodos = () => {
   });
 
   filterTodos.sort((a, b) => {
-    return new Date(a.date).valueOf() - new Date(b.date).valueOf();
+    return compareAsc(new Date(a.date), new Date(b.date));
   });
 
   filterTodos.forEach((todo) => createTodoCard(todo));
