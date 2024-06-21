@@ -33,6 +33,18 @@ const createCheckbox = (className) => {
   return checkbox;
 };
 
+const createNavItem = (className, projectName) => {
+  const li = document.createElement("li");
+  const liLink = document.createElement("a");
+
+  li.classList.add(className);
+  liLink.classList.add(`${className}-link`);
+  liLink.innerText = projectName;
+
+  li.append(liLink);
+  return li;
+};
+
 const createTodoCard = (todo, index) => {
   const container = createDiv("todo-card");
   const checkbox = createCheckbox("todo-card-input");
@@ -130,4 +142,5 @@ export {
   createTodoCard,
   createTodoModalElements,
   createProjectModalElements,
+  createNavItem,
 };

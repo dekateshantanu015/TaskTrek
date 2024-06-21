@@ -9,6 +9,7 @@ import {
 import { openModal } from "./modal";
 
 const buildPage = () => {
+  const main = document.querySelector(".main");
   const mainContainer = createDiv("main-container");
   const title = createH2("project-title");
   const desc = createPara("project-desc");
@@ -24,7 +25,9 @@ const buildPage = () => {
   );
 
   mainContainer.append(title, desc, todoContainer, btn);
-  return mainContainer;
+
+  main.textContent = "";
+  main.append(mainContainer);
 };
 
 export { buildPage };
