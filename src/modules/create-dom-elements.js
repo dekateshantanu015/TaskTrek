@@ -1,4 +1,5 @@
 import { removeTodo } from "./todos";
+import { openEditModal } from "./modal";
 
 //createDiv
 const createDiv = (className) => {
@@ -44,6 +45,9 @@ const createTodoCard = (todo, index) => {
   title.innerText = todo.title;
   date.innerText = todo.date;
   editBtn.innerText = "Edit";
+  editBtn.addEventListener("click", () => {
+    openEditModal(todo, index);
+  });
   deleteBtn.innerText = "X";
   deleteBtn.addEventListener("click", () => removeTodo(index));
 
