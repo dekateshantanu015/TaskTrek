@@ -1,5 +1,5 @@
 import { todos } from "./modules/todos";
-import { buildPage } from "./modules/general";
+import { buildGeneral } from "./modules/build-pages";
 import { openProjectModal } from "./modules/modal";
 import { renderProjectNav } from "./modules/projects";
 z;
@@ -17,7 +17,7 @@ navLinks.forEach((link) => {
     console.log(link.innerText);
     switch (link.innerText) {
       case "General":
-        buildPage();
+        buildGeneral();
         break;
       case "Today":
         break;

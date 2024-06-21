@@ -22,7 +22,7 @@ const openModal = () => {
   modal.classList.remove("display-none");
 };
 
-const openEditModal = (todo, index) => {
+const openEditModal = (todo) => {
   createTodoModalElements("Edit todo");
 
   const titleInput = document.querySelector(".modal-form-title-input");
@@ -32,7 +32,7 @@ const openEditModal = (todo, index) => {
   dateInput.value = todo.date;
   modal.classList.remove("display-none");
   modalForm.addEventListener("submit", editTodoEvent);
-  modalForm.currentIndex = index;
+  modalForm.currentIndex = todo.index;
 };
 
 const openProjectModal = () => {
@@ -42,10 +42,11 @@ const openProjectModal = () => {
 };
 
 const newTodoEvent = (e) => {
+  const projectName = document.querySelector(".project-title");
   const titleInput = document.querySelector(".modal-form-title-input");
   const dateInput = document.querySelector(".modal-form-date-input");
   e.preventDefault();
-  createTodo(titleInput.value, dateInput.value);
+  createTodo(projectName.innerText, titleInput.value, dateInput.value);
   modal.classList.add("display-none");
   modalForm.removeEventListener("submit", newTodoEvent);
 };
