@@ -27,9 +27,11 @@ const openEditModal = (todo) => {
 
   const titleInput = document.querySelector(".modal-form-title-input");
   const dateInput = document.querySelector(".modal-form-date-input");
+  const prioInput = document.querySelector(".modal-form-prio-input");
 
   titleInput.value = todo.title;
   dateInput.value = todo.date;
+  prioInput.checked = todo.prio;
   modal.classList.remove("display-none");
   modalForm.addEventListener("submit", editTodoEvent);
   modalForm.currentIndex = todo.index;
@@ -45,8 +47,16 @@ const newTodoEvent = (e) => {
   const projectName = document.querySelector(".project-title");
   const titleInput = document.querySelector(".modal-form-title-input");
   const dateInput = document.querySelector(".modal-form-date-input");
+  const prioInput = document.querySelector(".modal-form-prio-input");
+
   e.preventDefault();
-  createTodo(projectName.innerText, titleInput.value, dateInput.value);
+
+  createTodo(
+    projectName.innerText,
+    titleInput.value,
+    dateInput.value,
+    prioInput.checked
+  );
   modal.classList.add("display-none");
   modalForm.removeEventListener("submit", newTodoEvent);
 };
@@ -54,8 +64,16 @@ const newTodoEvent = (e) => {
 const editTodoEvent = (e) => {
   const titleInput = document.querySelector(".modal-form-title-input");
   const dateInput = document.querySelector(".modal-form-date-input");
+  const prioInput = document.querySelector(".modal-form-prio-input");
+
   e.preventDefault();
-  editTodo(e.currentTarget.currentIndex, titleInput.value, dateInput.value);
+
+  editTodo(
+    e.currentTarget.currentIndex,
+    titleInput.value,
+    dateInput.value,
+    prioInput.checked
+  );
   modal.classList.add("display-none");
   modalForm.removeEventListener("submit", editTodoEvent);
 };

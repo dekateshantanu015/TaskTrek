@@ -1,3 +1,4 @@
+import { format } from "date-fns";
 import { removeTodo, updateStatus, restoreTodo } from "./todos";
 import { openEditModal } from "./modal";
 
@@ -60,7 +61,7 @@ const createTodoCard = (todo) => {
     updateStatus(todo.index, checkbox.checked)
   );
   title.innerText = todo.title;
-  date.innerText = todo.date;
+  date.innerText = format(new Date(todo.date), "dd/MM/y");
   editBtn.innerText = "Edit";
   editBtn.addEventListener("click", () => {
     openEditModal(todo);
@@ -117,13 +118,24 @@ const createTodoModalElements = (title) => {
   const inputName = createInput("modal-form-title", "text");
   const labelDate = createLabel("modal-form-date");
   const inputDate = createInput("modal-form-date", "date");
+  const labelPrio = createLabel("modal-form-prio");
+  const inputPrio = createInput("modal-form-prio", "checkbox");
 
   legend.innerText = title;
   labelName.innerText = "Name";
   labelDate.innerText = "Date";
+  labelPrio.innerText = "Important?";
 
   formFieldset.textContent = "";
-  formFieldset.append(legend, labelName, inputName, labelDate, inputDate);
+  formFieldset.append(
+    legend,
+    labelName,
+    inputName,
+    labelDate,
+    inputDate,
+    labelPrio,
+    inputPrio
+  );
 };
 
 const createProjectModalElements = (title) => {
