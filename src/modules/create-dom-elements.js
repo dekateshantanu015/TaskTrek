@@ -66,7 +66,7 @@ const createTodoCard = (todo) => {
     openEditModal(todo);
   });
   deleteBtn.innerText = "X";
-  deleteBtn.addEventListener("click", () => removeTodo(todo.index));
+  deleteBtn.addEventListener("click", () => removeTodo(todo));
 
   container.append(checkbox, title, date, editBtn, deleteBtn);
 
