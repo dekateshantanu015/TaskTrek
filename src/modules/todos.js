@@ -54,18 +54,15 @@ const createTodo = (type, title, date) => {
 const removeTodo = (todo) => {
   if (todo.isTrash) {
     todos.splice(todo.index, 1);
-    console.log(todos);
     renderTodos();
   } else {
     todos[todo.index].isTrash = true;
-    console.log(todos);
     renderTodos();
   }
 };
 
 const editTodo = (index, title, date) => {
   const currentTodo = todos[index];
-  console.log(currentTodo);
   currentTodo.title = title;
   currentTodo.date = date;
   renderTodos();
@@ -73,12 +70,10 @@ const editTodo = (index, title, date) => {
 
 const updateStatus = (index, value) => {
   todos[index].checked = value;
-  console.log(todos);
 };
 
 const restoreTodo = (todo) => {
   todos[todo.index].isTrash = false;
-  console.log(todos);
   renderTodos();
 };
 
@@ -92,49 +87,44 @@ const renderTodos = () => {
 };
 
 const filterTodos = (currentPage) => {
-  if (currentPage === "Today") {
-    const filteredTodos = todos.filter((todo, index) => {
-      todo.index = index;
-      return (
-        todo.date === format(new Date(), "yyyy-MM-dd") && todo.isTrash === false
-      );
-    });
-    return filteredTodos;
-  } else if (currentPage === "Upcoming") {
-    const dates = eachDayOfInterval({
-      start: addDays(new Date(), 1),
-      end: addDays(new Date(), 7),
-    });
+  const filteredTodos = todos.filter((todo, index) => {
+    todo.index = index;
+    switch (currentPage) {
+      case "Today":
+        return (
+          todo.date === format(new Date(), "yyyy-MM-dd") &&
+          todo.isTrash === false
+        );
 
-    dates.forEach((date, index) =>
-      dates.splice(index, 1, format(date, "yyyy-MM-dd"))
-    );
+      case "Upcoming":
+        const dates = getDates();
+        return dates.include(todo.date) && todo.isTrash === false;
 
-    const filteredTodos = todos.filter((todo, index) => {
-      todo.index = index;
-      return dates.includes(todo.date) && todo.isTrash === false;
-    });
-    return filteredTodos;
-  } else if (currentPage === "Trash") {
-    const filteredTodos = todos.filter((todo, index) => {
-      todo.index = index;
-      return todo.isTrash === true;
-    });
-    filteredTodos.sort((a, b) => {
-      return compareAsc(new Date(a.date), new Date(b.date));
-    });
-    return filteredTodos;
-  } else {
-    const filteredTodos = todos.filter((todo, index) => {
-      todo.index = index;
-      return todo.type === currentPage && todo.isTrash === false;
-    });
+      case "Trash":
+        return todo.isTrash === true;
 
-    filteredTodos.sort((a, b) => {
-      return compareAsc(new Date(a.date), new Date(b.date));
-    });
-    return filteredTodos;
-  }
+      default:
+        return todo.type === currentPage && todo.isTrash === false;
+    }
+  });
+
+  filteredTodos.sort((a, b) => {
+    return compareAsc(new Date(a.date), new Date(b.date));
+  });
+  return filteredTodos;
+};
+
+const getDates = () => {
+  const dates = eachDayOfInterval;
+  ({
+    start: addDays(new Date(), 1),
+    end: addDays(new Date(), 7),
+  });
+
+  dates.forEach((date, index) =>
+    dates.splice(index, 1, format(date, "yyyy-MM-dd"))
+  );
+  return dates;
 };
 
 export {
