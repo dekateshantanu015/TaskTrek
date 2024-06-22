@@ -76,6 +76,12 @@ const updateStatus = (index, value) => {
   console.log(todos);
 };
 
+const restoreTodo = (todo) => {
+  todos[todo.index].isTrash = false;
+  console.log(todos);
+  renderTodos();
+};
+
 const renderTodos = () => {
   const currentPage = document.querySelector(".project-title");
   const todoContainer = document.querySelector(".todo-container");
@@ -131,4 +137,12 @@ const filterTodos = (currentPage) => {
   }
 };
 
-export { todos, createTodo, removeTodo, editTodo, updateStatus, renderTodos };
+export {
+  todos,
+  createTodo,
+  removeTodo,
+  editTodo,
+  updateStatus,
+  renderTodos,
+  restoreTodo,
+};

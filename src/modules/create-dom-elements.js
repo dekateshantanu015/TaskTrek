@@ -1,4 +1,4 @@
-import { removeTodo, updateStatus } from "./todos";
+import { removeTodo, updateStatus, restoreTodo } from "./todos";
 import { openEditModal } from "./modal";
 
 //createDiv
@@ -69,6 +69,13 @@ const createTodoCard = (todo) => {
   deleteBtn.addEventListener("click", () => removeTodo(todo));
 
   container.append(checkbox, title, date, editBtn, deleteBtn);
+
+  if (todo.isTrash) {
+    const restoreBtn = createBtn("todo-card-restore");
+    restoreBtn.innerText = "+";
+    restoreBtn.addEventListener("click", () => restoreTodo(todo));
+    container.insertBefore(restoreBtn, container.lastChild);
+  }
 
   todoContainer.append(container);
 };
