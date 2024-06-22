@@ -1,14 +1,15 @@
-import { buildProjectPage } from "./build-pages";
+import { buildGeneral, buildProjectPage } from "./build-pages";
 import { createNavItem } from "./create-dom-elements";
 
 const projects = [
-  { title: "Project-Title", desc: "Project-One" },
-  { title: "Project-Title2", desc: "Project-Two" },
-  { title: "Project-Title3", desc: "Project-Three" },
+  { title: "Project-Title", desc: "Project-One", isTrash: false },
+  { title: "Project-Title2", desc: "Project-Two", isTrash: true },
+  { title: "Project-Title3", desc: "Project-Three", isTrash: false },
 ];
 
 const projectFactory = (title, desc) => {
-  return { title, desc };
+  isTrash = false;
+  return { title, desc, isTrash };
 };
 
 const createProject = (title, desc) => {
@@ -18,17 +19,26 @@ const createProject = (title, desc) => {
   renderProjectNav();
 };
 
-const removeProject = (index) => {
-  projects.splice(index, 1);
+const removeProject = (project, index) => {
+  if (project.isTrash) {
+    projects.splice(index, 1);
+  } else {
+    project.isTrash = true;
+    buildGeneral();
+  }
+  console.log(projects);
+  renderProjectNav();
 };
 
 const renderProjectNav = () => {
   const projectNav = document.querySelector("#projects-list");
   projectNav.textContent = "";
-  projects.forEach((project) => {
-    const navItem = createNavItem(".header-nav-item", project.title);
-    navItem.addEventListener("click", () => buildProjectPage(project));
-    projectNav.append(navItem);
+  projects.forEach((project, index) => {
+    if (project.isTrash === false) {
+      const navItem = createNavItem(".header-nav-item", project.title);
+      navItem.addEventListener("click", () => buildProjectPage(project, index));
+      projectNav.append(navItem);
+    }
   });
 };
 
