@@ -10,30 +10,28 @@ import { removeProject, renderTrashProjects } from "./projects";
 import { openModal } from "./modal";
 
 const buildGeneral = () => {
-  const main = document.querySelector(".main");
-  const mainContainer = createDiv("main-container");
+  const mainContainer = document.querySelector(".main-container");
 
-  mainContainer.setAttribute("data-id", "General");
   const title = createH2("project-title");
   const desc = createPara("project-desc");
   const todoContainer = createDiv("todo-container");
   const createTodoBtn = createBtn("todo-create");
 
+  mainContainer.setAttribute("data-id", "General");
   title.innerText = "General";
   desc.innerText = "A general list of random todos";
   createTodoBtn.innerText = "+";
   createTodoBtn.addEventListener("click", () => openModal());
 
+  mainContainer.textContent = "";
   mainContainer.append(title, desc, todoContainer, createTodoBtn);
 
-  main.textContent = "";
-  main.append(mainContainer);
   renderTodos();
 };
 
 const buildToday = () => {
-  const main = document.querySelector(".main");
-  const mainContainer = createDiv("main-container");
+  const mainContainer = document.querySelector(".main-container");
+
   const title = createH2("project-title");
   const desc = createPara("project-desc");
   const todoContainer = createDiv("todo-container");
@@ -43,14 +41,13 @@ const buildToday = () => {
 
   mainContainer.append(title, desc, todoContainer);
 
-  main.textContent = "";
-  main.append(mainContainer);
+  mainContainer.textContent = "";
   renderTodos();
 };
 
 const buildUpcoming = () => {
-  const main = document.querySelector(".main");
-  const mainContainer = createDiv("main-container");
+  const mainContainer = document.querySelector(".main-container");
+
   const title = createH2("project-title");
   const desc = createPara("project-desc");
   const todoContainer = createDiv("todo-container");
@@ -60,38 +57,31 @@ const buildUpcoming = () => {
 
   mainContainer.append(title, desc, todoContainer);
 
-  main.textContent = "";
-  main.append(mainContainer);
+  mainContainer.textContent = "";
   renderTodos();
 };
 
 const buildTrash = () => {
-  const main = document.querySelector(".main");
-  const mainContainer = createDiv("main-container");
-
-  mainContainer.setAttribute("data-id", "Trash");
+  const mainContainer = document.querySelector(".main-container");
 
   const title = createH2("project-title");
   const desc = createPara("project-desc");
   const todoContainer = createDiv("todo-container");
   const projectContainer = createDiv("project-container");
 
+  mainContainer.setAttribute("data-id", "Trash");
   title.innerText = "Trash";
   desc.innerText = "All deleted todos & projects";
 
   mainContainer.append(title, desc, todoContainer, projectContainer);
 
-  main.textContent = "";
-  main.append(mainContainer);
+  mainContainer.textContent = "";
   renderTodos();
   renderTrashProjects();
 };
 
 const buildProjectPage = (project, index) => {
-  const main = document.querySelector(".main");
-  const mainContainer = createDiv("main-container");
-
-  mainContainer.setAttribute("data-id", index);
+  const mainContainer = document.querySelector(".main-container");
 
   const title = createH2("project-title");
   const desc = createPara("project-desc");
@@ -99,6 +89,7 @@ const buildProjectPage = (project, index) => {
   const createTodoBtn = createBtn("todo-create");
   const delProjectBtn = createBtn("project-delete");
 
+  mainContainer.setAttribute("data-id", index);
   title.innerText = project.title;
   desc.innerText = project.desc;
   createTodoBtn.innerText = "+";
@@ -114,8 +105,7 @@ const buildProjectPage = (project, index) => {
     delProjectBtn
   );
 
-  main.textContent = "";
-  main.append(mainContainer);
+  mainContainer.textContent = "";
   renderTodos();
 };
 
