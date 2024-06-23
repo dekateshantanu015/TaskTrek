@@ -1,5 +1,6 @@
 import { format } from "date-fns";
 import { removeTodo, updateStatus, restoreTodo } from "./todos";
+import { removeProject, restoreProject } from "./projects";
 import { openEditModal } from "./modal";
 
 //createDiv
@@ -79,6 +80,24 @@ const createTodoCard = (todo) => {
   }
 
   todoContainer.append(container);
+};
+
+const createProjectCard = (project, index) => {
+  const projectContainer = document.querySelector(".project-container");
+  const container = createDiv("project-card");
+  const title = createPara("project-card-title");
+  const deleteBtn = createBtn("project-card-delete");
+  const restoreBtn = createBtn("project-card-restore");
+
+  title.innerText = project.title;
+  deleteBtn.innerText = "x";
+  deleteBtn.addEventListener("click", () => removeProject(project, index));
+  restoreBtn.innerText = "+";
+  restoreBtn.addEventListener("click", () => restoreProject(project));
+
+  container.append(title, restoreBtn, deleteBtn);
+
+  projectContainer.append(container);
 };
 
 const createLegend = (className) => {
@@ -161,6 +180,7 @@ export {
   createBtn,
   createInput,
   createTodoCard,
+  createProjectCard,
   createTodoModalElements,
   createProjectModalElements,
   createNavItem,

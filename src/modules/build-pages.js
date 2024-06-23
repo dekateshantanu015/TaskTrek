@@ -6,12 +6,14 @@ import {
   createPara,
   createTodoCard,
 } from "./create-dom-elements";
-import { removeProject } from "./projects";
+import { removeProject, renderTrashProjects } from "./projects";
 import { openModal } from "./modal";
 
 const buildGeneral = () => {
   const main = document.querySelector(".main");
   const mainContainer = createDiv("main-container");
+
+  mainContainer.setAttribute("data-id", "General");
   const title = createH2("project-title");
   const desc = createPara("project-desc");
   const todoContainer = createDiv("todo-container");
@@ -66,6 +68,9 @@ const buildUpcoming = () => {
 const buildTrash = () => {
   const main = document.querySelector(".main");
   const mainContainer = createDiv("main-container");
+
+  mainContainer.setAttribute("data-id", "Trash");
+
   const title = createH2("project-title");
   const desc = createPara("project-desc");
   const todoContainer = createDiv("todo-container");
@@ -79,12 +84,15 @@ const buildTrash = () => {
   main.textContent = "";
   main.append(mainContainer);
   renderTodos();
-  console.log("Trash page BUilt");
+  renderTrashProjects();
 };
 
 const buildProjectPage = (project, index) => {
   const main = document.querySelector(".main");
   const mainContainer = createDiv("main-container");
+
+  mainContainer.setAttribute("data-id", index);
+
   const title = createH2("project-title");
   const desc = createPara("project-desc");
   const todoContainer = createDiv("todo-container");

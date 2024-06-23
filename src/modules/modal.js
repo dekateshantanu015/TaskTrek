@@ -44,19 +44,16 @@ const openProjectModal = () => {
 };
 
 const newTodoEvent = (e) => {
-  const projectName = document.querySelector(".project-title");
+  const projectType = document
+    .querySelector(".main-container")
+    .getAttribute("data-id");
   const titleInput = document.querySelector(".modal-form-title-input");
   const dateInput = document.querySelector(".modal-form-date-input");
   const prioInput = document.querySelector(".modal-form-prio-input");
 
   e.preventDefault();
 
-  createTodo(
-    projectName.innerText,
-    titleInput.value,
-    dateInput.value,
-    prioInput.checked
-  );
+  createTodo(projectName, titleInput.value, dateInput.value, prioInput.checked);
   modal.classList.add("display-none");
   modalForm.removeEventListener("submit", newTodoEvent);
 };
