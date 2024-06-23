@@ -17,14 +17,14 @@ const buildGeneral = () => {
   const title = createH2("project-title");
   const desc = createPara("project-desc");
   const todoContainer = createDiv("todo-container");
-  const btn = createBtn("todo-create");
+  const createTodoBtn = createBtn("todo-create");
 
   title.innerText = "General";
   desc.innerText = "A general list of random todos";
-  btn.innerText = "+";
-  btn.addEventListener("click", () => openModal());
+  createTodoBtn.innerText = "+";
+  createTodoBtn.addEventListener("click", () => openModal());
 
-  mainContainer.append(title, desc, todoContainer, btn);
+  mainContainer.append(title, desc, todoContainer, createTodoBtn);
 
   main.textContent = "";
   main.append(mainContainer);
