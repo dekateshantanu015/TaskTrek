@@ -4,7 +4,7 @@ import {
   createDiv,
   createH2,
   createPara,
-  createTodoCard,
+  createSvg,
 } from "./create-dom-elements";
 import { removeProject, renderTrashProjects } from "./projects";
 import { openModal } from "./modal";
@@ -20,7 +20,7 @@ const buildGeneral = () => {
   mainContainer.setAttribute("data-id", "General");
   title.innerText = "General";
   desc.innerText = "A general list of random todos";
-  createTodoBtn.innerText = "+";
+  createTodoBtn.append(createSvg("plus"));
   createTodoBtn.addEventListener("click", () => openModal());
 
   mainContainer.textContent = "";
@@ -92,9 +92,9 @@ const buildProjectPage = (project, index) => {
   mainContainer.setAttribute("data-id", index);
   title.innerText = project.title;
   desc.innerText = project.desc;
-  createTodoBtn.innerText = "+";
+  createTodoBtn.append(createSvg("plus"));
   createTodoBtn.addEventListener("click", () => openModal());
-  delProjectBtn.innerText = "x";
+  delProjectBtn.append(createSvg("delete"));
   delProjectBtn.addEventListener("click", () => removeProject(project, index));
 
   mainContainer.append(
