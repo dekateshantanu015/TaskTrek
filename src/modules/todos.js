@@ -74,6 +74,14 @@ const updateStatus = (index, value) => {
   todos[index].checked = value;
 };
 
+const removeAllProjectTodos = (project) => {
+  todos.forEach((todo, index) => {
+    if (todo.type == project.iD) {
+      todos.splice(index, 1);
+    }
+  });
+};
+
 const restoreTodo = (todo) => {
   todos[todo.index].isTrash = false;
   renderTodos();
@@ -138,6 +146,7 @@ export {
   removeTodo,
   editTodo,
   updateStatus,
+  removeAllProjectTodos,
   renderTodos,
   restoreTodo,
 };

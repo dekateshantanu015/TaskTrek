@@ -1,5 +1,6 @@
 import { buildGeneral, buildProjectPage } from "./build-pages";
 import { createNavItem, createProjectCard } from "./create-dom-elements";
+import { removeAllProjectTodos } from "./todos";
 
 const projects = [
   { title: "Project-Title", desc: "Project-One", isTrash: false },
@@ -21,8 +22,9 @@ const createProject = (title, desc) => {
 
 const removeProject = (project, index) => {
   if (project.isTrash) {
+    removeAllProjectTodos(project);
     projects.splice(index, 1);
-    renderTrashProject();
+    renderTrashProjects();
   } else {
     project.isTrash = true;
     buildGeneral();
@@ -33,7 +35,7 @@ const removeProject = (project, index) => {
 
 const restoreProject = (project) => {
   project.isTrash = false;
-  renderTrashProject();
+  renderTrashProjects();
   renderProjectNav();
 };
 
