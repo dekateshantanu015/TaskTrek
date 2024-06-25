@@ -3,14 +3,20 @@
 :root {
     --fs-primary: 16px;
 
+    --font-clr-primary: hsl(0 0% 0% / 1);
+    --font-clr-secondary: hsl(0 0% 0% / 1);
+
     --clr-bg-primary: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #88a4e8, #77aeeb, #68b6eb, #56bfe8, #4ec7e2, #54cdd8, #65d3cc);
     --clr-bg-accent: hsl(0 0% 100% / 0.5);
-    --clr-btn-dark: hsl(0 0% 0% / 0.15);    
+    --clr-btn-dark: hsl(0 0% 0% / 0.15); 
+
+    --shadow-primary: 0 0 15px hsl(0 0% 0% / .3);
 }
 
 body {
     font-size: var(--fs-primary);
     font-family: 'Roboto', sans-serif;
+    color: var(--font-clr-primary);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -35,6 +41,7 @@ body {
         max-width: 1200px;
         max-height: 800px;
         border-radius: 2rem;
+        box-shadow: var(--shadow-primary);
     }
 }
 
@@ -65,6 +72,7 @@ body {
     list-style: none;
     margin: 1rem 0;
     padding: 0;
+    color: var(--font-clr-primary);
 }
 
 #primary-list>li:nth-of-type(3) {
@@ -86,7 +94,7 @@ body {
 }
 
 .header-nav-item>a>svg {
-    min-width: 24px;
+    flex-shrink: 0;
 }
 
 .header-nav-item>a:hover {
@@ -104,6 +112,7 @@ body {
     background-color: var(--clr-btn-dark);
     border: none;
     border-radius: 100vmax;
+    cursor: pointer;
 }
 
 /* Media query for mobile nav changes*/
@@ -166,6 +175,11 @@ body {
     border: none;
     border-radius: 100vmax;
     background: var(--clr-bg-accent);
+    cursor: pointer;
+}
+
+.project-controls>button:hover {
+    background-color: var(--clr-btn-dark);
 }
 
 .project-delete {
@@ -187,7 +201,7 @@ body {
     grid-auto-flow: column;
     grid-auto-columns: max-content;
     gap: 1rem;
-    padding: 1rem 1rem;
+    padding: 1rem;
     background-color: var(--clr-bg-accent);
     border-radius: 1rem;
 }
@@ -219,6 +233,14 @@ project-card {
     border: none;
     background: none;
     height: 24px;
+    cursor: pointer;
+}
+
+.todo-btn-container>button:hover,
+.project-btn-container>button:hover {
+    border-radius: 100vmax;
+    background-color: var(--clr-btn-dark);
+    outline: 5px solid var(--clr-btn-dark);
 }
 
 /* Media query for mobile nav changes */
