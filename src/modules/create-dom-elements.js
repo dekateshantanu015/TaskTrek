@@ -160,6 +160,8 @@ const createTodoModalElements = (title) => {
   labelDate.innerText = "Date";
   labelPrio.innerText = "Important?";
 
+  labelPrio.append(inputPrio);
+
   formFieldset.textContent = "";
   formFieldset.append(
     legend,
@@ -167,8 +169,7 @@ const createTodoModalElements = (title) => {
     inputName,
     labelDate,
     inputDate,
-    labelPrio,
-    inputPrio
+    labelPrio
   );
 };
 
