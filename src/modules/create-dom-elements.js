@@ -233,6 +233,7 @@ const createSvg = (type) => {
 
 export {
   createDiv,
+  createH1,
   createH2,
   createH3,
   createPara,

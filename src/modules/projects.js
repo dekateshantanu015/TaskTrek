@@ -6,6 +6,15 @@ const projects = [
   { title: "Project-Title", desc: "Project-One", isTrash: false },
   { title: "Project-Title2", desc: "Project-Two", isTrash: true },
   { title: "Project-Title3", desc: "Project-Three", isTrash: false },
+  { title: "Test1", desc: "Project Three", isTrash: false },
+  { title: "Test2", desc: "Project Three", isTrash: false },
+  { title: "Test3", desc: "Project Three", isTrash: false },
+  { title: "Test4", desc: "Project Three", isTrash: false },
+  { title: "Test5", desc: "Project Three", isTrash: false },
+  { title: "Test6", desc: "Project Three", isTrash: false },
+  { title: "Test7", desc: "Project Three", isTrash: false },
+  { title: "Test8", desc: "Project Three", isTrash: false },
+  { title: "Test9", desc: "Project Three", isTrash: false },
 ];
 
 const projectFactory = (title, desc) => {
@@ -45,7 +54,7 @@ const renderProjectNav = () => {
   projects.forEach((project, index) => {
     project.iD = index;
     if (project.isTrash === false) {
-      const navItem = createNavItem(".header-nav-item", project.title);
+      const navItem = createNavItem("header-nav-item", project.title);
       navItem.addEventListener("click", () => buildProjectPage(project, index));
       projectNav.append(navItem);
     }

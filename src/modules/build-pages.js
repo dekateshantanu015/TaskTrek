@@ -2,7 +2,7 @@ import { renderTodos } from "./todos";
 import {
   createBtn,
   createDiv,
-  createH2,
+  createH1,
   createH3,
   createPara,
   createSvg,
@@ -13,7 +13,7 @@ import { openModal } from "./modal";
 const buildGeneral = () => {
   const mainContainer = document.querySelector(".main-container");
 
-  const title = createH2("project-title");
+  const title = createH1("project-title");
   const desc = createPara("project-desc");
   const todoContainer = createDiv("todo-container");
   const createTodoBtn = createBtn("todo-create");
@@ -33,7 +33,7 @@ const buildGeneral = () => {
 const buildToday = () => {
   const mainContainer = document.querySelector(".main-container");
 
-  const title = createH2("project-title");
+  const title = createH1("project-title");
   const desc = createPara("project-desc");
   const todoContainer = createDiv("todo-container");
 
@@ -50,7 +50,7 @@ const buildToday = () => {
 const buildUpcoming = () => {
   const mainContainer = document.querySelector(".main-container");
 
-  const title = createH2("project-title");
+  const title = createH1("project-title");
   const desc = createPara("project-desc");
   const todoContainer = createDiv("todo-container");
 
@@ -67,12 +67,12 @@ const buildUpcoming = () => {
 const buildTrash = () => {
   const mainContainer = document.querySelector(".main-container");
 
-  const title = createH2("project-title");
+  const title = createH1("project-title");
   const desc = createPara("project-desc");
   const todoContainer = createDiv("todo-container");
   const projectContainer = createDiv("project-container");
-  const todoSubTitle = createH2("project-subtitle");
-  const projectSubTitle = createH2("project-subtitle");
+  const todoSubTitle = createH3("project-subtitle");
+  const projectSubTitle = createH3("project-subtitle");
 
   mainContainer.setAttribute("data-id", "Trash");
   title.innerText = "Trash";
@@ -97,7 +97,7 @@ const buildTrash = () => {
 const buildProjectPage = (project, index) => {
   const mainContainer = document.querySelector(".main-container");
 
-  const title = createH2("project-title");
+  const title = createH1("project-title");
   const desc = createPara("project-desc");
   const todoContainer = createDiv("todo-container");
   const createTodoBtn = createBtn("todo-create");
