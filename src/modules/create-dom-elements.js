@@ -22,6 +22,14 @@ const createH2 = (className) => {
   h2.classList.add(className);
   return h2;
 };
+
+//createH3
+const createH3 = (className) => {
+  const h3 = document.createElement("h3");
+  h3.classList.add(className);
+  return h3;
+};
+
 //createPara
 const createPara = (className) => {
   const para = document.createElement("p");
@@ -53,10 +61,6 @@ const createNavItem = (className, projectName) => {
 
   li.append(liLink);
   return li;
-};
-
-const createHeader = () => {
-  const navBtn = createBtn();
 };
 
 const createTodoCard = (todo) => {
@@ -230,6 +234,7 @@ const createSvg = (type) => {
 export {
   createDiv,
   createH2,
+  createH3,
   createPara,
   createBtn,
   createInput,

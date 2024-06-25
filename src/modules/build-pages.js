@@ -3,6 +3,7 @@ import {
   createBtn,
   createDiv,
   createH2,
+  createH3,
   createPara,
   createSvg,
 } from "./create-dom-elements";
@@ -40,9 +41,9 @@ const buildToday = () => {
   title.innerText = "Today";
   desc.innerText = "All todos dated today";
 
+  mainContainer.textContent = "";
   mainContainer.append(title, desc, todoContainer);
 
-  mainContainer.textContent = "";
   renderTodos();
 };
 
@@ -57,9 +58,9 @@ const buildUpcoming = () => {
   title.innerText = "Upcoming";
   desc.innerText = "All upcoming todos in the next week";
 
+  mainContainer.textContent = "";
   mainContainer.append(title, desc, todoContainer);
 
-  mainContainer.textContent = "";
   renderTodos();
 };
 
@@ -70,14 +71,25 @@ const buildTrash = () => {
   const desc = createPara("project-desc");
   const todoContainer = createDiv("todo-container");
   const projectContainer = createDiv("project-container");
+  const todoSubTitle = createH2("project-subtitle");
+  const projectSubTitle = createH2("project-subtitle");
 
   mainContainer.setAttribute("data-id", "Trash");
   title.innerText = "Trash";
   desc.innerText = "All deleted todos & projects";
-
-  mainContainer.append(title, desc, todoContainer, projectContainer);
+  todoSubTitle.innerText = "Todos";
+  projectSubTitle.innerText = "Projects";
 
   mainContainer.textContent = "";
+  mainContainer.append(
+    title,
+    desc,
+    todoSubTitle,
+    todoContainer,
+    projectSubTitle,
+    projectContainer
+  );
+
   renderTodos();
   renderTrashProjects();
 };
@@ -99,6 +111,7 @@ const buildProjectPage = (project, index) => {
   delProjectBtn.append(createSvg("delete"));
   delProjectBtn.addEventListener("click", () => removeProject(project, index));
 
+  mainContainer.textContent = "";
   mainContainer.append(
     title,
     createTodoBtn,
@@ -107,7 +120,6 @@ const buildProjectPage = (project, index) => {
     todoContainer
   );
 
-  mainContainer.textContent = "";
   renderTodos();
 };
 
