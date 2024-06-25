@@ -106,6 +106,7 @@ const buildProjectPage = (project, index) => {
   mainContainer.setAttribute("data-id", index);
   title.innerText = project.title;
   desc.innerText = project.desc;
+  createTodoBtn.innerText = "Create Todo";
   createTodoBtn.append(createSvg("plus"));
   createTodoBtn.addEventListener("click", () => openModal());
   delProjectBtn.append(createSvg("delete"));
