@@ -10,7 +10,7 @@
     --clr-bg-accent: hsl(0 0% 100% / 0.5);
     --clr-btn-dark: hsl(0 0% 0% / 0.15); 
 
-    --shadow-primary: 0 0 15px hsl(0 0% 0% / .3);
+    --shadow-primary: 0 0 15px hsl(0 0% 0% / 0.3);
 }
 
 body {
@@ -75,7 +75,7 @@ body {
     color: var(--font-clr-primary);
 }
 
-#primary-list>li:nth-of-type(3) {
+#primary-list > li:nth-of-type(3) {
     margin-bottom: 1rem;
 }
 
@@ -84,7 +84,7 @@ body {
     overflow-y: auto;
 }
 
-.header-nav-item>a {
+.header-nav-item > a {
     display: flex;
     gap: 0.2rem;
     word-break: break-word;
@@ -93,11 +93,11 @@ body {
     padding: 0.2rem 0.5rem;
 }
 
-.header-nav-item>a>svg {
+.header-nav-item > a > svg {
     flex-shrink: 0;
 }
 
-.header-nav-item>a:hover {
+.header-nav-item > a:hover {
     border-radius: 1rem;
     background-color: var(--clr-btn-dark);
 }
@@ -167,7 +167,7 @@ body {
     gap: 1rem;
 }
 
-.project-controls>button {
+.project-controls > button {
     display: flex;
     place-items: center;
     width: max-content;
@@ -178,7 +178,7 @@ body {
     cursor: pointer;
 }
 
-.project-controls>button:hover {
+.project-controls > button:hover {
     background-color: var(--clr-btn-dark);
 }
 
@@ -228,8 +228,8 @@ body {
     gap: 1rem;
 }
 
-.todo-btn-container>button,
-.project-btn-container>button {
+.todo-btn-container > button,
+.project-btn-container > button {
     padding: 0;
     border: none;
     background: none;
@@ -286,7 +286,7 @@ body {
 .modal {
     position: absolute;
     inset: 0;
-    background-color: hsla(0, 0%, 0%, .3);
+    background-color: hsla(0, 0%, 0%, 0.3);
     width: 100vw;
     height: 100vh;
     z-index: 100;
@@ -312,7 +312,7 @@ body {
     padding: 0;
 }
 
-.modal-form-fieldset>input {
+.modal-form-fieldset > input {
     margin-bottom: 1rem;
 }
 

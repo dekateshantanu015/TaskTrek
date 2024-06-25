@@ -156,6 +156,8 @@ const renderTodos = () => {
 };
 
 const filterTodos = (currentPage) => {
+  const sortBtn = document.querySelector(".todo-sort");
+
   const filteredTodos = todos.filter((todo, index) => {
     todo.index = index;
     switch (currentPage) {
@@ -173,6 +175,13 @@ const filterTodos = (currentPage) => {
         return todo.isTrash === true;
 
       default:
+        if (sortBtn && sortBtn.innerText === "Important") {
+          return (
+            todo.type === currentPage &&
+            todo.isTrash === false &&
+            todo.checked === true
+          );
+        }
         return todo.type === currentPage && todo.isTrash === false;
     }
   });
