@@ -29,6 +29,14 @@ const createProject = (title, desc) => {
   renderProjectNav();
 };
 
+const editProject = (project, title, desc) => {
+  const currentProject = projects[project.iD];
+  currentProject.title = title;
+  currentProject.desc = desc;
+  renderProjectNav();
+  buildProjectPage(project, project.iD);
+};
+
 const removeProject = (project, index) => {
   if (project.isTrash) {
     removeAllProjectTodos(project);
@@ -36,6 +44,7 @@ const removeProject = (project, index) => {
     renderTrashProjects();
   } else {
     project.isTrash = true;
+    renderProjectNav();
     buildGeneral();
   }
   console.log(projects);
@@ -72,6 +81,7 @@ const renderTrashProjects = () => {
 export {
   createProject,
   removeProject,
+  editProject,
   renderProjectNav,
   restoreProject,
   renderTrashProjects,

@@ -7,8 +7,8 @@ import {
   createPara,
   createSvg,
 } from "./create-dom-elements";
-import { removeProject, renderTrashProjects } from "./projects";
-import { openModal } from "./modal";
+import { editProject, removeProject, renderTrashProjects } from "./projects";
+import { openEditProjectModal, openModal } from "./modal";
 
 const buildGeneral = () => {
   const mainContainer = document.querySelector(".main-container");
@@ -104,6 +104,7 @@ const buildProjectPage = (project, index) => {
   const btnContainer = createDiv("project-controls");
   const createTodoBtn = createBtn("todo-create");
   const delProjectBtn = createBtn("project-delete");
+  const editProjectBtn = createBtn("project-delete");
 
   mainContainer.setAttribute("data-id", index);
   title.innerText = project.title;
@@ -112,7 +113,10 @@ const buildProjectPage = (project, index) => {
   createTodoBtn.addEventListener("click", () => openModal());
   delProjectBtn.append(createSvg("delete"), "Delete Project");
   delProjectBtn.addEventListener("click", () => removeProject(project, index));
-  btnContainer.append(createTodoBtn, delProjectBtn);
+  editProjectBtn.append(createSvg("delete"), "Edit Project");
+  editProjectBtn.addEventListener("click", () => openEditProjectModal(project));
+
+  btnContainer.append(createTodoBtn, editProjectBtn, delProjectBtn);
 
   mainContainer.textContent = "";
   mainContainer.append(title, desc, btnContainer, todoContainer);
