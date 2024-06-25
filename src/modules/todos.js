@@ -167,7 +167,7 @@ const filterTodos = (currentPage) => {
 
       case "Upcoming":
         const dates = getDates();
-        return dates.include(todo.date) && todo.isTrash === false;
+        return dates.includes(todo.date) && todo.isTrash === false;
 
       case "Trash":
         return todo.isTrash === true;
@@ -184,8 +184,7 @@ const filterTodos = (currentPage) => {
 };
 
 const getDates = () => {
-  const dates = eachDayOfInterval;
-  ({
+  const dates = eachDayOfInterval({
     start: addDays(new Date(), 1),
     end: addDays(new Date(), 7),
   });

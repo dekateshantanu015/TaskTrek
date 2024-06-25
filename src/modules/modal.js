@@ -53,7 +53,7 @@ const newTodoEvent = (e) => {
 
   e.preventDefault();
 
-  createTodo(projectName, titleInput.value, dateInput.value, prioInput.checked);
+  createTodo(projectType, titleInput.value, dateInput.value, prioInput.checked);
   modal.classList.add("display-none");
   modalForm.removeEventListener("submit", newTodoEvent);
 };
