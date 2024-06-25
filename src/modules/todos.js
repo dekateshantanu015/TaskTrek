@@ -8,6 +8,7 @@ const todos = [
     title: "Todo-title",
     date: "2022-07-20",
     isTrash: false,
+    prio: false,
   },
   {
     type: "General",
@@ -15,6 +16,7 @@ const todos = [
     title: "Todo-Title2",
     date: "2022-07-21",
     isTrash: false,
+    prio: false,
   },
   {
     type: "0",
@@ -22,6 +24,7 @@ const todos = [
     title: "Todo-Title3",
     date: "2022-07-22",
     isTrash: false,
+    prio: false,
   },
   {
     type: "General",
@@ -29,6 +32,7 @@ const todos = [
     title: "Todo-Title4",
     date: "2022-07-22",
     isTrash: false,
+    prio: false,
   },
   {
     type: "General",
@@ -36,6 +40,7 @@ const todos = [
     title: "Trash-Todo",
     date: "2022-07-22",
     isTrash: true,
+    prio: true,
   },
   {
     type: "General",
@@ -43,6 +48,7 @@ const todos = [
     title: "Todo-Title",
     date: "2022-07-20",
     isTrash: false,
+    prio: false,
   },
   {
     type: "General",
@@ -50,6 +56,7 @@ const todos = [
     title: "Todo-Title",
     date: "2022-07-20",
     isTrash: false,
+    prio: false,
   },
   {
     type: "General",
@@ -57,6 +64,7 @@ const todos = [
     title: "Todo-Title",
     date: "2022-07-20",
     isTrash: false,
+    prio: false,
   },
   {
     type: "General",
@@ -64,6 +72,7 @@ const todos = [
     title: "Todo-Title",
     date: "2022-07-20",
     isTrash: false,
+    prio: false,
   },
   {
     type: "General",
@@ -71,6 +80,7 @@ const todos = [
     title: "Todo-Title",
     date: "2022-07-20",
     isTrash: false,
+    prio: false,
   },
   {
     type: "General",
@@ -78,6 +88,7 @@ const todos = [
     title: "Todo-Title",
     date: "2022-07-20",
     isTrash: false,
+    prio: false,
   },
   {
     type: "General",
@@ -85,6 +96,7 @@ const todos = [
     title: "Todo-Title",
     date: "2022-07-20",
     isTrash: false,
+    prio: false,
   },
   {
     type: "General",
@@ -92,6 +104,7 @@ const todos = [
     title: "Todo-Title",
     date: "2022-07-20",
     isTrash: false,
+    prio: false,
   },
 ];
 
@@ -179,7 +192,7 @@ const filterTodos = (currentPage) => {
           return (
             todo.type === currentPage &&
             todo.isTrash === false &&
-            todo.checked === true
+            todo.prio === true
           );
         }
         return todo.type === currentPage && todo.isTrash === false;
