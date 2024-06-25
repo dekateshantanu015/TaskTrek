@@ -162,8 +162,33 @@ body {
     padding: 1.5rem;
 }
 
+.project-title-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.project-title {
+    margin-right: auto;
+}
+
+.project-title-container > button {
+    display: flex;
+    place-items: center;
+    padding: 0.3rem;
+    border: none;
+    border-radius: 100vmax;
+    background: var(--clr-bg-accent);
+    cursor: pointer;
+}
+
+.project-title-container > button:hover {
+    background-color: var(--clr-btn-dark);
+}
+
 .project-controls {
     display: flex;
+    justify-content: space-between;
     gap: 1rem;
 }
 
@@ -171,7 +196,7 @@ body {
     display: flex;
     place-items: center;
     width: max-content;
-    padding: 0.2rem 0.5rem 0.2rem 0.2rem;
+    padding: 0.3rem 0.6rem;
     border: none;
     border-radius: 100vmax;
     background: var(--clr-bg-accent);
@@ -182,9 +207,6 @@ body {
     background-color: var(--clr-btn-dark);
 }
 
-.project-delete {
-    margin-left: auto;
-}
 
 .todo-container {
     display: flex;

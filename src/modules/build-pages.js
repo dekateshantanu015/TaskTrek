@@ -35,7 +35,7 @@ const buildGeneral = () => {
     renderTodos();
   });
 
-  btnContainer.append(createTodoBtn, sortBtn);
+  btnContainer.append(sortBtn, createTodoBtn);
   mainContainer.textContent = "";
   mainContainer.append(title, desc, btnContainer, todoContainer);
 
@@ -111,11 +111,12 @@ const buildProjectPage = (project, index) => {
 
   const title = createH1("project-title");
   const desc = createPara("project-desc");
+  const titleContainer = createDiv("project-title-container");
   const todoContainer = createDiv("todo-container");
   const btnContainer = createDiv("project-controls");
   const createTodoBtn = createBtn("todo-create");
   const delProjectBtn = createBtn("project-delete");
-  const editProjectBtn = createBtn("project-delete");
+  const editProjectBtn = createBtn("project-edit");
   const sortBtn = createBtn("todo-sort");
 
   mainContainer.setAttribute("data-id", index);
@@ -137,10 +138,11 @@ const buildProjectPage = (project, index) => {
     renderTodos();
   });
 
-  btnContainer.append(createTodoBtn, sortBtn, editProjectBtn, delProjectBtn);
+  btnContainer.append(sortBtn, createTodoBtn);
+  titleContainer.append(btnContainer, editProjectBtn, delProjectBtn);
 
   mainContainer.textContent = "";
-  mainContainer.append(title, desc, btnContainer, todoContainer);
+  mainContainer.append(titleContainer, desc, btnContainer, todoContainer);
 
   renderTodos();
 };
