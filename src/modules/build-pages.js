@@ -36,6 +36,7 @@ const buildToday = () => {
   const desc = createPara("project-desc");
   const todoContainer = createDiv("todo-container");
 
+  mainContainer.setAttribute("data-id", "Today");
   title.innerText = "Today";
   desc.innerText = "All todos dated today";
 
@@ -52,6 +53,7 @@ const buildUpcoming = () => {
   const desc = createPara("project-desc");
   const todoContainer = createDiv("todo-container");
 
+  mainContainer.setAttribute("data-id", "Upcoming");
   title.innerText = "Upcoming";
   desc.innerText = "All upcoming todos in the next week";
 
