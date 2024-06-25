@@ -11,19 +11,17 @@ body {
 }
 
 .content-container {
-    position: relative;
     width: 100%;
     height: 100vh;
     display: grid;
     grid-template-columns: max-content 1fr;
-    grid-template-areas: 'nav main'
+    grid-template-areas: 'nav main';
     background-color: var(--clr-one);
     overflow: hidden;
 }
 
 @media screen and (min-width: 1000px) {
     .content-container {
-        outline: 1px solid black;
         width: 80vw;
         height: 80vh;
         max-width: 1200px;
@@ -38,9 +36,9 @@ body {
 .header {
     grid-area: nav;
     display: flex;
-    flex-direction: columns;
+    flex-direction: column;
     padding: 1.5rem;
-    background-color: hsl(0 0% 100% / 0.5);
+    background: hsl(0 0% 100% / 0.5);
     width: 250px;
     height: 100%;
 }
@@ -53,6 +51,7 @@ body {
 
 .header-nav-list {
     list-style: none;
+    margin: 1rem 0;
 }
 
 #projects-list {
@@ -65,7 +64,8 @@ body {
     width: 100%;
 }
 
-media screen and (max-width: 800px) {
+/* Media query for mobile nav */
+@media screen and (max-width: 800px) {
     .header {
         position: fixed;
         top: 96px;
@@ -93,6 +93,13 @@ media screen and (max-width: 800px) {
     position: relative;
 }
 
+.main button {
+    padding: 0;
+    border: none;
+    background: none;
+    height: 24px;
+}
+
 .mobile-header {
     display: none;
 }
@@ -102,9 +109,6 @@ media screen and (max-width: 800px) {
 }
 
 .mobile-nav-btn {
-    padding: 0;
-    border: none;
-    background: none;
     height: 32px;
 }
 
@@ -112,13 +116,19 @@ media screen and (max-width: 800px) {
     display: block;
 }
 
+.todo-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
 .todo-card,
 .project-card {
     display: flex;
     align-items: center;
     gap: 1rem;
-    padding: 0 1rem;
-    border: 1px solid black;
+    padding: 1rem 1rem;
+    background-color: var(--clr-one);
 }
 
 .todo-card-title,
@@ -141,13 +151,11 @@ media screen and (max-width: 800px) {
         padding: 1.5rem;
         background-color: var(--clr-one);
     }
-    
+
     .main-container.is-active {
         transform: translateX(250px);
     }
 }
-
-
 
 /*##############################
             MODAL
@@ -155,6 +163,7 @@ media screen and (max-width: 800px) {
 
 .modal {
     position: absolute;
+    inset: 0;
     background-color: hsla(0, 0%, 0%, .3);
     width: 100vw;
     height: 100vh;
@@ -189,4 +198,14 @@ media screen and (max-width: 800px) {
     position: absolute;
     right: 16px;
     bottom: 0;
+}
+
+.footer-content {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+}
+
+.footer-link {
+    text-decoration: none;
 }
