@@ -16,16 +16,17 @@ const buildGeneral = () => {
   const title = createH1("project-title");
   const desc = createPara("project-desc");
   const todoContainer = createDiv("todo-container");
+  const btnContainer = createDiv("project-controls");
   const createTodoBtn = createBtn("todo-create");
 
   mainContainer.setAttribute("data-id", "General");
   title.innerText = "General";
   desc.innerText = "A general list of random todos";
-  createTodoBtn.append(createSvg("plus"));
+  createTodoBtn.append(createSvg("plus"), "Create Todo");
   createTodoBtn.addEventListener("click", () => openModal());
-
+  btnContainer.append(createTodoBtn);
   mainContainer.textContent = "";
-  mainContainer.append(title, createTodoBtn, desc, todoContainer);
+  mainContainer.append(title, desc, btnContainer, todoContainer);
 
   renderTodos();
 };
@@ -100,26 +101,21 @@ const buildProjectPage = (project, index) => {
   const title = createH1("project-title");
   const desc = createPara("project-desc");
   const todoContainer = createDiv("todo-container");
+  const btnContainer = createDiv("project-controls");
   const createTodoBtn = createBtn("todo-create");
   const delProjectBtn = createBtn("project-delete");
 
   mainContainer.setAttribute("data-id", index);
   title.innerText = project.title;
   desc.innerText = project.desc;
-  createTodoBtn.innerText = "Create Todo";
-  createTodoBtn.append(createSvg("plus"));
+  createTodoBtn.append(createSvg("plus"), "Create Todo");
   createTodoBtn.addEventListener("click", () => openModal());
-  delProjectBtn.append(createSvg("delete"));
+  delProjectBtn.append(createSvg("delete"), "Delete Project");
   delProjectBtn.addEventListener("click", () => removeProject(project, index));
+  btnContainer.append(createTodoBtn, delProjectBtn);
 
   mainContainer.textContent = "";
-  mainContainer.append(
-    title,
-    createTodoBtn,
-    delProjectBtn,
-    desc,
-    todoContainer
-  );
+  mainContainer.append(title, desc, btnContainer, todoContainer);
 
   renderTodos();
 };
