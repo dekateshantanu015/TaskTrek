@@ -19,6 +19,7 @@ navBtn.addEventListener("click", () => {
 
 mobileNavBtn.addEventListener("click", () => {
   document.querySelector(".header").classList.toggle("is-active");
+  document.querySelector(".main-container").classList.toggle("is-active");
 });
 
 navLinks.forEach((link) => {
