@@ -148,7 +148,31 @@ const editTodo = (index, title, date, isImportant) => {
 
 const updateStatus = (index, value) => {
   todos[index].checked = value;
-  setTimeout(renderTodos(), 2000);
+  updateStatusTimeout.setup();
+};
+
+const updateStatusTimeout = {
+  reset() {
+    this.timeoutID = undefined;
+  },
+
+  setup() {
+    if (typeof this.timeoutID === "number") {
+      this.cancel();
+    }
+
+    this.timeoutID = setTimeout(
+      function () {
+        renderTodos();
+        this.reset();
+      }.bind(this),
+      2000
+    );
+  },
+
+  cancel() {
+    clearTimeout(this.timeoutID);
+  },
 };
 
 const removeAllProjectTodos = (project) => {
