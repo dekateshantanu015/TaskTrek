@@ -141,6 +141,7 @@ const editTodo = (index, title, date, prio) => {
 
 const updateStatus = (index, value) => {
   todos[index].checked = value;
+  renderTodos();
 };
 
 const removeAllProjectTodos = (project) => {
@@ -177,25 +178,38 @@ const filterTodos = (currentPage) => {
       case "Today":
         return (
           todo.date === format(new Date(), "yyyy-MM-dd") &&
-          todo.isTrash === false
+          todo.isTrash === false &&
+          todo.checked === false
         );
 
       case "Upcoming":
         const dates = getDates();
-        return dates.includes(todo.date) && todo.isTrash === false;
+        return (
+          dates.includes(todo.date) &&
+          todo.isTrash === false &&
+          todo.checked === false
+        );
 
       case "Trash":
         return todo.isTrash === true;
+
+      case "Completed":
+        return todo.checked === true && todo.isTrash === false;
 
       default:
         if (sortBtn && sortBtn.innerText === "Important") {
           return (
             todo.type === currentPage &&
             todo.isTrash === false &&
-            todo.prio === true
+            todo.prio === true &&
+            todo.checked === false
           );
         }
-        return todo.type === currentPage && todo.isTrash === false;
+        return (
+          todo.type === currentPage &&
+          todo.isTrash === false &&
+          todo.checked === false
+        );
     }
   });
 

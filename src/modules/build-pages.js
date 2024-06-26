@@ -76,6 +76,23 @@ const buildUpcoming = () => {
   renderTodos();
 };
 
+const buildCompleted = () => {
+  const mainContainer = document.querySelector(".main-container");
+
+  const title = createH1("project-title");
+  const desc = createPara("project-desc");
+  const todoContainer = createDiv("todo-container");
+
+  mainContainer.setAttribute("data-id", "Completed");
+  title.innerText = "Completed";
+  desc.innerText = "List of all the Completed Todos";
+
+  mainContainer.textContent = "";
+  mainContainer.append(title, desc, todoContainer);
+  renderTodos();
+  renderTrashProjects();
+};
+
 const buildTrash = () => {
   const mainContainer = document.querySelector(".main-container");
 
@@ -152,5 +169,6 @@ export {
   buildProjectPage,
   buildToday,
   buildUpcoming,
+  buildCompleted,
   buildTrash,
 };

@@ -1,6 +1,7 @@
 import {
   buildGeneral,
   buildToday,
+  buildCompleted,
   buildUpcoming,
   buildTrash,
 } from "./modules/build-pages";
@@ -34,6 +35,9 @@ navLinks.forEach((link) => {
         break;
       case "Upcoming":
         buildUpcoming();
+        break;
+      case "Completed":
+        buildCompleted();
         break;
       case "Trash":
         buildTrash();
