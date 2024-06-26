@@ -99,22 +99,41 @@ const buildTrash = () => {
   const desc = createPara("project-desc");
   const todoContainer = createDiv("todo-container");
   const projectContainer = createDiv("project-container");
-  const todoSubTitle = createH3("project-subtitle");
-  const projectSubTitle = createH3("project-subtitle");
+  const typeProjectBtn = createBtn("project-type");
 
   mainContainer.setAttribute("data-id", "Trash");
   title.innerText = "Trash";
   desc.innerText = "All deleted todos & projects";
-  todoSubTitle.innerText = "Todos";
-  projectSubTitle.innerText = "Projects";
+
+  typeProjectBtn.innerText = "Todos";
+  projectContainer.classList.add("display-none");
+  typeProjectBtn.addEventListener("click", () => {
+    if (typeProjectBtn.innerText === "Todos") {
+      typeProjectBtn.innerText = "Projects";
+      document
+        .querySelector(".project-container")
+        .classList.remove("display-none");
+      document.querySelector(".todo-container").classList.add("display-none");
+    } else {
+      typeProjectBtn.innerText = "Todos";
+      document
+        .querySelector(".todo-container")
+        .classList.remove("display-none");
+      document
+        .querySelector(".project-container")
+        .classList.add("display-none");
+    }
+    renderTodos();
+    renderTrashProjects();
+  });
 
   mainContainer.textContent = "";
+
   mainContainer.append(
     title,
     desc,
-    todoSubTitle,
+    typeProjectBtn,
     todoContainer,
-    projectSubTitle,
     projectContainer
   );
 

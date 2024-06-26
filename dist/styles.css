@@ -230,6 +230,7 @@ body {
     gap: 1rem;
 }
 
+.project-type,
 .project-controls > button {
     display: flex;
     place-items: center;
@@ -241,6 +242,7 @@ body {
     cursor: pointer;
 }
 
+.project-type:hover,
 .project-controls > button:hover {
     background-color: var(--clr-btn-primary);
 }
