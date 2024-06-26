@@ -3289,7 +3289,96 @@ function eachDayOfInterval(interval, options) {
 // Fallback for modularized imports:
 /* harmony default export */ const date_fns_eachDayOfInterval = ((/* unused pure expression or super */ null && (eachDayOfInterval)));
 
+;// CONCATENATED MODULE: ./src/modules/projects.js
+
+
+
+
+const LOCAL_STORAGE_PROJECTS_KEY = "todolist.projects";
+const projects = JSON.parse(
+  localStorage.getItem(LOCAL_STORAGE_PROJECTS_KEY)
+) || [
+  {
+    title: "Demo Project",
+    desc: "This is a demo project with some filler content, feel free to remove it!",
+    isTrash: false,
+  },
+];
+
+const saveProjects = () => {
+  localStorage.setItem(LOCAL_STORAGE_PROJECTS_KEY, JSON.stringify(projects));
+};
+
+const projectFactory = (title, desc) => {
+  const isTrash = false;
+  return { title, desc, isTrash };
+};
+
+const createProject = (title, desc) => {
+  const newProject = projectFactory(title, desc);
+  projects.push(newProject);
+  console.log(projects);
+  renderProjectNav();
+  buildProjectPage(
+    projects[projects.length - 1],
+    projects[projects.length - 1].iD
+  );
+};
+
+const editProject = (project, title, desc) => {
+  const currentProject = projects[project.iD];
+  currentProject.title = title;
+  currentProject.desc = desc;
+  renderProjectNav();
+  buildProjectPage(project, project.iD);
+};
+
+const removeProject = (project, index) => {
+  if (project.isTrash) {
+    removeAllProjectTodos(project);
+    projects.splice(index, 1);
+    renderTrashProjects();
+  } else {
+    updateAllProjectTodos(project);
+    project.isTrash = true;
+    renderProjectNav();
+    buildGeneral();
+  }
+};
+
+const restoreProject = (project) => {
+  project.isTrash = false;
+  renderTrashProjects();
+  renderProjectNav();
+};
+
+const renderProjectNav = () => {
+  const projectNav = document.querySelector("#projects-list");
+  projectNav.textContent = "";
+  projects.forEach((project, index) => {
+    project.iD = index;
+    if (project.isTrash === false) {
+      const navItem = createNavItem("header-nav-item", project.title);
+      navItem.addEventListener("click", () => buildProjectPage(project, index));
+      projectNav.append(navItem);
+    }
+  });
+  saveProjects();
+};
+
+const renderTrashProjects = () => {
+  const projectContainer = document.querySelector(".project-container");
+  projectContainer.textContent = "";
+  projects.forEach((project, index) => {
+    if (project.isTrash) createProjectCard(project, index);
+  });
+  saveProjects();
+};
+
+
+
 ;// CONCATENATED MODULE: ./src/modules/todos.js
+
 
 
 
@@ -3417,15 +3506,26 @@ const updateStatusTimeout = {
   },
 };
 
-const removeAllProjectTodos = (project) => {
-  todos.forEach((todo, index) => {
-    if (todo.type == project.iD) {
-      todos.splice(index, 1);
-    }
+const updateAllProjectTodos = (project) => {
+  todos.forEach((todo) => {
+    if (todo.type == project.iD) todo.isTrash = true;
   });
 };
 
+const removeAllProjectTodos = (project) => {
+  let i = todos.length;
+  while (i--) {
+    const todo = todos[i];
+    if (todo.type == project.iD) {
+      todos.splice(todo.index, 1);
+    }
+  }
+  renderTodos();
+};
+
 const restoreTodo = (todo) => {
+  if (typeof parseInt(todo.type) === "number")
+    restoreProject(projects[parseInt(todo.type)]);
   todos[todo.index].isTrash = false;
   renderTodos();
 };
@@ -3503,93 +3603,6 @@ const getDates = () => {
     dates.splice(index, 1, format(date, "yyyy-MM-dd"))
   );
   return dates;
-};
-
-
-
-;// CONCATENATED MODULE: ./src/modules/projects.js
-
-
-
-
-const LOCAL_STORAGE_PROJECTS_KEY = "todolist.projects";
-const projects = JSON.parse(
-  localStorage.getItem(LOCAL_STORAGE_PROJECTS_KEY)
-) || [
-  {
-    title: "Demo Project",
-    desc: "This is a demo project with some filler content, feel free to remove it!",
-    isTrash: false,
-  },
-];
-
-const saveProjects = () => {
-  localStorage.setItem(LOCAL_STORAGE_PROJECTS_KEY, JSON.stringify(projects));
-};
-
-const projectFactory = (title, desc) => {
-  const isTrash = false;
-  return { title, desc, isTrash };
-};
-
-const createProject = (title, desc) => {
-  const newProject = projectFactory(title, desc);
-  projects.push(newProject);
-  console.log(projects);
-  renderProjectNav();
-  buildProjectPage(
-    projects[projects.length - 1],
-    projects[projects.length - 1].iD
-  );
-};
-
-const editProject = (project, title, desc) => {
-  const currentProject = projects[project.iD];
-  currentProject.title = title;
-  currentProject.desc = desc;
-  renderProjectNav();
-  buildProjectPage(project, project.iD);
-};
-
-const removeProject = (project, index) => {
-  if (project.isTrash) {
-    removeAllProjectTodos(project);
-    projects.splice(index, 1);
-    renderTrashProjects();
-  } else {
-    project.isTrash = true;
-    renderProjectNav();
-    buildGeneral();
-  }
-};
-
-const restoreProject = (project) => {
-  project.isTrash = false;
-  renderTrashProjects();
-  renderProjectNav();
-};
-
-const renderProjectNav = () => {
-  const projectNav = document.querySelector("#projects-list");
-  projectNav.textContent = "";
-  projects.forEach((project, index) => {
-    project.iD = index;
-    if (project.isTrash === false) {
-      const navItem = createNavItem("header-nav-item", project.title);
-      navItem.addEventListener("click", () => buildProjectPage(project, index));
-      projectNav.append(navItem);
-    }
-  });
-  saveProjects();
-};
-
-const renderTrashProjects = () => {
-  const projectContainer = document.querySelector(".project-container");
-  projectContainer.textContent = "";
-  projects.forEach((project, index) => {
-    if (project.isTrash) createProjectCard(project, index);
-  });
-  saveProjects();
 };
 
 

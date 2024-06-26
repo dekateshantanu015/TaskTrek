@@ -1,6 +1,6 @@
 import { buildGeneral, buildProjectPage } from "./build-pages";
 import { createNavItem, createProjectCard } from "./create-dom-elements";
-import { removeAllProjectTodos } from "./todos";
+import { removeAllProjectTodos, updateAllProjectTodos } from "./todos";
 
 const LOCAL_STORAGE_PROJECTS_KEY = "todolist.projects";
 const projects = JSON.parse(
@@ -47,6 +47,7 @@ const removeProject = (project, index) => {
     projects.splice(index, 1);
     renderTrashProjects();
   } else {
+    updateAllProjectTodos(project);
     project.isTrash = true;
     renderProjectNav();
     buildGeneral();
