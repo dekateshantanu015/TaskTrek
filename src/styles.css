@@ -364,6 +364,14 @@ body {
 
 .todo-card-date {
     text-align: center;
+    line-height: 1;
+}
+
+.todo-card-date.is-expired {
+    padding: 0.3rem 1rem;
+    border-radius: 100vmax;
+    font-weight: var(--fw-700);
+    background-color: var(--clr-important);
 }
 
 .todo-btn-container,
