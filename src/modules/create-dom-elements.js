@@ -114,8 +114,10 @@ const createTodoCard = (todo) => {
     const type = createPara("todo-card-type");
     if (isNaN(todo.type)) {
       type.innerText = todo.type;
+      type.setAttribute("title", todo.type);
     } else {
       type.innerText = projects[parseInt(todo.type)].title;
+      type.setAttribute("title", projects[parseInt(todo.type)].title);
     }
 
     container.append(type);
