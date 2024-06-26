@@ -79,6 +79,7 @@ const renderTrashProjects = () => {
 };
 
 export {
+  projects,
   createProject,
   removeProject,
   editProject,

@@ -90,7 +90,6 @@ const buildCompleted = () => {
   mainContainer.textContent = "";
   mainContainer.append(title, desc, todoContainer);
   renderTodos();
-  renderTrashProjects();
 };
 
 const buildTrash = () => {

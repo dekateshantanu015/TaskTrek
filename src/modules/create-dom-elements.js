@@ -1,6 +1,6 @@
 import { format } from "date-fns";
 import { removeTodo, updateStatus, restoreTodo } from "./todos";
-import { removeProject, restoreProject } from "./projects";
+import { projects, removeProject, restoreProject } from "./projects";
 import { openEditModal } from "./modal";
 
 //createDiv
@@ -64,6 +64,9 @@ const createNavItem = (className, projectName) => {
 };
 
 const createTodoCard = (todo) => {
+  const currentPage = document
+    .querySelector(".main-container")
+    .getAttribute("data-id");
   const todoContainer = document.querySelector(".todo-container");
   const container = createDiv("todo-card");
   const checkbox = createCheckbox("todo-card-input");
@@ -78,6 +81,7 @@ const createTodoCard = (todo) => {
     updateStatus(todo.index, checkbox.checked)
   );
   title.innerText = todo.title;
+
   date.innerText = format(new Date(todo.date), "dd/MM/y");
   editBtn.append(createSvg("edit"));
   editBtn.addEventListener("click", () => {
@@ -99,6 +103,22 @@ const createTodoCard = (todo) => {
     restoreBtn.append(createSvg("restore"));
     restoreBtn.addEventListener("click", () => restoreTodo(todo));
     btnContainer.insertBefore(restoreBtn, btnContainer.lastChild);
+  }
+
+  if (
+    currentPage === "Completed" ||
+    currentPage === "Upcoming" ||
+    currentPage === "Today" ||
+    currentPage === "Trash"
+  ) {
+    const type = createPara("todo-card-type");
+    if (isNaN(todo.type)) {
+      type.innerText = todo.type;
+    } else {
+      type.innerText = projects[parseInt(todo.type)].title;
+    }
+
+    container.append(type);
   }
 
   container.append(checkbox, title, date, btnContainer);
