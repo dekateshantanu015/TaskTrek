@@ -7,6 +7,10 @@ import {
 } from "./modules/build-pages";
 import { openProjectModal } from "./modules/modal";
 import { renderProjectNav } from "./modules/projects";
+import "simplebar";
+import "simplebar/dist/simplebar.css";
+import "./reset.css";
+import "./styles.css";
 
 const navBtn = document.querySelector(".header-nav-btn");
 const navLinks = document.querySelectorAll(".header-main-nav-link");
