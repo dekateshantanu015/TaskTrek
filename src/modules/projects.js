@@ -2,20 +2,28 @@ import { buildGeneral, buildProjectPage } from "./build-pages";
 import { createNavItem, createProjectCard } from "./create-dom-elements";
 import { removeAllProjectTodos } from "./todos";
 
-const projects = [
-  { title: "Project-Title", desc: "Project-One", isTrash: false },
-  { title: "Project-Title2", desc: "Project-Two", isTrash: true },
-  { title: "Project-Title3", desc: "Project-Three", isTrash: false },
-  { title: "Test1", desc: "Project Three", isTrash: false },
-  { title: "Test2", desc: "Project Three", isTrash: false },
-  { title: "Test3", desc: "Project Three", isTrash: false },
-  { title: "Test4", desc: "Project Three", isTrash: false },
-  { title: "Test5", desc: "Project Three", isTrash: false },
-  { title: "Test6", desc: "Project Three", isTrash: false },
-  { title: "Test7", desc: "Project Three", isTrash: false },
-  { title: "Test8", desc: "Project Three", isTrash: false },
-  { title: "Test9", desc: "Project Three", isTrash: false },
-];
+const LOCAL_STORAGE_PROJECTS_KEY = "todolist.projects";
+const projects =
+  JSON.parse(localStorage.getItem(LOCAL_STORAGE_PROJECTS_KEY)) || [];
+
+// const projects = [
+//   { title: "Project-Title", desc: "Project-One", isTrash: false },
+//   { title: "Project-Title2", desc: "Project-Two", isTrash: true },
+//   { title: "Project-Title3", desc: "Project-Three", isTrash: false },
+//   { title: "Test1", desc: "Project Three", isTrash: false },
+//   { title: "Test2", desc: "Project Three", isTrash: false },
+//   { title: "Test3", desc: "Project Three", isTrash: false },
+//   { title: "Test4", desc: "Project Three", isTrash: false },
+//   { title: "Test5", desc: "Project Three", isTrash: false },
+//   { title: "Test6", desc: "Project Three", isTrash: false },
+//   { title: "Test7", desc: "Project Three", isTrash: false },
+//   { title: "Test8", desc: "Project Three", isTrash: false },
+//   { title: "Test9", desc: "Project Three", isTrash: false },
+// ];
+
+const saveProjects = () => {
+  localStorage.setItem(LOCAL_STORAGE_PROJECTS_KEY, JSON.stringify(projects));
+};
 
 const projectFactory = (title, desc) => {
   isTrash = false;
@@ -68,6 +76,7 @@ const renderProjectNav = () => {
       projectNav.append(navItem);
     }
   });
+  saveProjects();
 };
 
 const renderTrashProjects = () => {
@@ -76,6 +85,7 @@ const renderTrashProjects = () => {
   projects.forEach((project, index) => {
     if (project.isTrash) createProjectCard(project, index);
   });
+  saveProjects();
 };
 
 export {

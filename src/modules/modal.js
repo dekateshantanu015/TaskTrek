@@ -33,7 +33,7 @@ const openEditModal = (todo) => {
 
   titleInput.value = todo.title;
   dateInput.value = todo.date;
-  prioInput.checked = todo.prio;
+  prioInput.checked = todo.isImportant;
   modal.classList.remove("display-none");
   modalForm.addEventListener("submit", editTodoEvent);
   modalForm.currentIndex = todo.index;
