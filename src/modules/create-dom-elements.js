@@ -1,4 +1,4 @@
-import { format, isPast } from "date-fns";
+import { format, isPast, add, addDays } from "date-fns";
 import { removeTodo, updateStatus, restoreTodo } from "./todos";
 import { projects, removeProject, restoreProject } from "./projects";
 import { openEditModal } from "./modal";
@@ -92,7 +92,7 @@ const createTodoCard = (todo) => {
 
   btnContainer.append(editBtn, deleteBtn);
 
-  if (isPast(new Date(todo.date))) {
+  if (isPast(addDays(new Date(todo.date), 1))) {
     date.innerText = "Expired";
     date.classList.add("is-expired");
   }

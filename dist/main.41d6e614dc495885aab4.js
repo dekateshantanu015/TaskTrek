@@ -3129,6 +3129,44 @@ function isPast(date) {
 // Fallback for modularized imports:
 /* harmony default export */ const date_fns_isPast = ((/* unused pure expression or super */ null && (isPast)));
 
+;// CONCATENATED MODULE: ./node_modules/date-fns/addDays.mjs
+
+
+
+/**
+ * @name addDays
+ * @category Day Helpers
+ * @summary Add the specified number of days to the given date.
+ *
+ * @description
+ * Add the specified number of days to the given date.
+ *
+ * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
+ *
+ * @param date - The date to be changed
+ * @param amount - The amount of days to be added.
+ *
+ * @returns The new date with the days added
+ *
+ * @example
+ * // Add 10 days to 1 September 2014:
+ * const result = addDays(new Date(2014, 8, 1), 10)
+ * //=> Thu Sep 11 2014 00:00:00
+ */
+function addDays(date, amount) {
+  const _date = toDate(date);
+  if (isNaN(amount)) return constructFrom(date, NaN);
+  if (!amount) {
+    // If 0 days, no-op to avoid changing times in the hour before end of DST
+    return _date;
+  }
+  _date.setDate(_date.getDate() + amount);
+  return _date;
+}
+
+// Fallback for modularized imports:
+/* harmony default export */ const date_fns_addDays = ((/* unused pure expression or super */ null && (addDays)));
+
 ;// CONCATENATED MODULE: ./node_modules/date-fns/compareAsc.mjs
 
 
@@ -3251,44 +3289,6 @@ function eachDayOfInterval(interval, options) {
 // Fallback for modularized imports:
 /* harmony default export */ const date_fns_eachDayOfInterval = ((/* unused pure expression or super */ null && (eachDayOfInterval)));
 
-;// CONCATENATED MODULE: ./node_modules/date-fns/addDays.mjs
-
-
-
-/**
- * @name addDays
- * @category Day Helpers
- * @summary Add the specified number of days to the given date.
- *
- * @description
- * Add the specified number of days to the given date.
- *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- *
- * @param date - The date to be changed
- * @param amount - The amount of days to be added.
- *
- * @returns The new date with the days added
- *
- * @example
- * // Add 10 days to 1 September 2014:
- * const result = addDays(new Date(2014, 8, 1), 10)
- * //=> Thu Sep 11 2014 00:00:00
- */
-function addDays(date, amount) {
-  const _date = toDate(date);
-  if (isNaN(amount)) return constructFrom(date, NaN);
-  if (!amount) {
-    // If 0 days, no-op to avoid changing times in the hour before end of DST
-    return _date;
-  }
-  _date.setDate(_date.getDate() + amount);
-  return _date;
-}
-
-// Fallback for modularized imports:
-/* harmony default export */ const date_fns_addDays = ((/* unused pure expression or super */ null && (addDays)));
-
 ;// CONCATENATED MODULE: ./src/modules/todos.js
 
 
@@ -3306,8 +3306,48 @@ const todos = JSON.parse(localStorage.getItem(LOCAL_STORAGE_TODO_KEY)) || [
   {
     type: "0",
     checked: false,
-    title: "Go to the store",
+    title: "Go to the store 🛒",
     date: format(new Date(), "yyyy-MM-dd"),
+    isImportant: false,
+    isTrash: false,
+  },
+  {
+    type: "0",
+    checked: true,
+    title: "Take dogs for a walk 🐕",
+    date: format(new Date(), "yyyy-MM-dd"),
+    isImportant: true,
+    isTrash: false,
+  },
+  {
+    type: "0",
+    checked: false,
+    title: "Go to the gym 🏋️‍♀️",
+    date: format(new Date(), "yyyy-MM-dd"),
+    isImportant: true,
+    isTrash: false,
+  },
+  {
+    type: "0",
+    checked: false,
+    title: "Go to the cinema with friends 🎦",
+    date: format(new Date(), "yyyy-MM-dd"),
+    isImportant: false,
+    isTrash: true,
+  },
+  {
+    type: "0",
+    checked: false,
+    title: "Pick up birthday present for friend 🎁",
+    date: format(addDays(new Date(), 3), "yyyy-MM-dd"),
+    isImportant: true,
+    isTrash: false,
+  },
+  {
+    type: "0",
+    checked: false,
+    title: "Do some gardening 🏡",
+    date: format(addDays(new Date(), 10), "yyyy-MM-dd"),
     isImportant: false,
     isTrash: false,
   },
@@ -3764,7 +3804,7 @@ const createTodoCard = (todo) => {
 
   btnContainer.append(editBtn, deleteBtn);
 
-  if (isPast(new Date(todo.date))) {
+  if (isPast(addDays(new Date(todo.date), 1))) {
     date.innerText = "Expired";
     date.classList.add("is-expired");
   }
