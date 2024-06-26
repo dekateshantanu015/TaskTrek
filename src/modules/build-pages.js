@@ -22,7 +22,7 @@ const buildGeneral = () => {
 
   mainContainer.setAttribute("data-id", "General");
   title.innerText = "General";
-  desc.innerText = "A general list of random todos";
+  desc.innerText = "A general list of todos";
   createTodoBtn.append(createSvg("plus"), "Create Todo");
   createTodoBtn.addEventListener("click", () => openModal());
 
