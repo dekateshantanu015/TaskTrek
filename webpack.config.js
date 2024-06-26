@@ -7,9 +7,13 @@ module.exports = {
     main: path.resolve(__dirname, "./src/index.js"),
   },
   devtool: "inline-source-map",
+  devServer: {
+    static: "./dist",
+  },
   output: {
     filename: "[name].[contenthash].js",
     path: path.resolve(__dirname, "dist"),
+    clean: true,
   },
   module: {
     rules: [
@@ -29,4 +33,7 @@ module.exports = {
       filename: "[name].[contenthash].css",
     }),
   ],
+  optimization: {
+    runtimeChunk: "single",
+  },
 };

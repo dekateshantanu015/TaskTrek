@@ -1,8 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
 
 :root {
-    --fs-primary: 16px;
-
     --fs-300: 0.7rem;
     --fs-400: 1rem;
     --fs-500: 1.3rem;
@@ -15,18 +13,33 @@
     --font-clr-primary: hsl(0 0% 0% / 1);
     --font-clr-secondary: hsl(0 0% 0% / 1);
 
-    --clr-bg-primary: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #88a4e8, #77aeeb, #68b6eb, #56bfe8, #4ec7e2, #54cdd8, #65d3cc);
     --clr-bg-accent: hsl(0 0% 100% / 0.5);
-    
+    --clr-bg-secondary: hsl(0 0% 100% / 0.1);
+    --clr-bg-secondary-xl: hsl(0 0% 100% / 0.3);
+    --clr-bg-primary: linear-gradient(
+        to right top,
+        #d16ba5,
+        #c777b9,
+        #ba83ca,
+        #aa8fd8,
+        #9a9ae1,
+        #88a4e8,
+        #77aeeb,
+        #68b6eb,
+        #56bfe8,
+        #4ec7e2,
+        #54cdd8,
+        #65d3cc
+    );
+
     --clr-btn-primary: hsl(0 0% 0% / 0.15);
     --clr-btn-accent: hsl(0 0% 0% / 0.3);
     --clr-btn-focus: hsl(176 56% 61%);
     --clr-btn-checkbox: hsl(120 72% 44%);
 
-
     --clr-important: hsl(0 100% 50% / 0.4);
 
-    --shadow-primary: 0 0 15px hsl(0 0% 0% / 0.25);
+    --shadow-primary: 0 0 10px hsl(0 0% 0% / 0.2);
 }
 
 /* Custom scrollbar for webkit browsers */
@@ -66,7 +79,7 @@ body {
     grid-template-columns: max-content 1fr;
     grid-template-rows: 100%;
     grid-template-areas: 'nav main';
-    background-color: var(--clr-bg-accent);
+    background-color: var(--clr-bg-secondary);
     overflow: hidden;
 }
 
@@ -78,6 +91,7 @@ body {
         max-height: 800px;
         border-radius: 2rem;
         box-shadow: var(--shadow-primary);
+        background-color: var(--clr-bg-secondary-xl);
     }
 }
 
@@ -161,24 +175,26 @@ body {
     border: none;
     border-radius: 100vmax;
     cursor: pointer;
+    line-height: 1;
 }
 
 .header-nav-btn:hover {
     background-color: var(--clr-btn-accent);
 }
 
-/* Media query for mobile nav changes*/
+/* Media query for mobile nav changes */
 @media screen and (max-width: 800px) {
     .header {
         position: fixed;
         top: 100px;
+        left: -250px;
         bottom: 0;
         z-index: 10;
-        transform: translateX(-250px);
+        transition: transform 250ms ease-in;
     }
 
     .header.is-active {
-        transform: translateX(0px);
+        transform: translateX(250px);
     }
 
     .header-title {
@@ -211,23 +227,11 @@ body {
 }
 
 .main-container {
-    position: relative;
     display: flex;
     flex-direction: column;
     gap: 1rem;
     height: 100%;
     padding: 1.5rem;
-}
-
-.main-container.is-active {
-        transform: translateX(250px);
-    }
-
-.main-container.is-active::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-color: var(--clr-bg-accent);
 }
 
 .project-title-container {
@@ -249,6 +253,7 @@ body {
     border-radius: 100vmax;
     background: var(--clr-bg-accent);
     cursor: pointer;
+    line-height: 1;
 }
 
 .project-title-container > button:hover {
@@ -256,7 +261,6 @@ body {
 }
 
 .project-controls {
-    font-weight: var(--fw-700);
     display: flex;
     justify-content: space-between;
     gap: 1rem;
@@ -264,6 +268,7 @@ body {
 
 .project-type,
 .project-controls > button {
+    font-weight: var(--fw-700);
     display: flex;
     place-items: center;
     width: max-content;
@@ -272,13 +277,13 @@ body {
     border-radius: 100vmax;
     background: var(--clr-bg-accent);
     cursor: pointer;
+    line-height: 1;
 }
 
 .project-type:hover,
 .project-controls > button:hover {
     background-color: var(--clr-btn-primary);
 }
-
 
 .todo-container,
 .project-container {
@@ -287,7 +292,7 @@ body {
     gap: 1rem;
     margin-right: -1rem;
     overflow-y: auto;
-    overflow: overlay;
+    overflow-y: overlay;
 }
 
 .todo-card,
@@ -300,9 +305,9 @@ body {
     grid-auto-columns: max-content;
     gap: 1rem;
     padding: 1.2rem;
+    margin-right: 1rem;
     background-color: var(--clr-bg-accent);
     border-radius: 1rem;
-    margin-right: 1rem;
 }
 
 .project-card {
@@ -363,10 +368,11 @@ body {
     background: none;
     height: 24px;
     cursor: pointer;
+    line-height: 1;
 }
 
-.todo-btn-container>button:hover,
-.project-btn-container>button:hover {
+.todo-btn-container > button:hover,
+.project-btn-container > button:hover {
     border-radius: 100vmax;
     background-color: var(--clr-btn-primary);
     outline: 5px solid var(--clr-btn-primary);
@@ -384,11 +390,25 @@ body {
     }
 
     .main-container {
+        position: relative;
         height: calc(100vh - 100px);
+        transition: transform 250ms ease-in;
+    }
+
+    .main-container::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-color: hsl(0 0% 0% / 0);
+        transition: background-color 250ms ease-in;
     }
 
     .main-container.is-active {
         transform: translateX(250px);
+    }
+
+    .main-container.is-active::after {
+        background-color: var(--clr-bg-accent);
     }
 }
 
@@ -414,13 +434,13 @@ body {
 .modal {
     position: absolute;
     inset: 0;
-    background-color: hsla(0, 0%, 0%, 0.3);
     width: 100vw;
     height: 100vh;
     z-index: 100;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: hsl(0 0% 0% / 0.3);
 }
 
 .modal-form {
@@ -487,6 +507,8 @@ body {
     background-color: var(--clr-btn-primary);
     cursor: pointer;
     font-weight: var(--fw-700);
+    padding: 0.5rem 0;
+    line-height: 1;
 }
 
 .modal-form-submit:hover {
@@ -507,10 +529,6 @@ body {
 
 .modal-form-close:hover {
     color: red;
-}
-
-.display-none {
-    display: none;
 }
 
 @supports (backdrop-filter: blur(2rem)) {
@@ -540,4 +558,10 @@ body {
 
 .footer-link:hover {
     color: white;
+}
+
+/* Display none utility */
+
+.display-none {
+    display: none;
 }
