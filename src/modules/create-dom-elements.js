@@ -88,6 +88,12 @@ const createTodoCard = (todo) => {
 
   btnContainer.append(editBtn, deleteBtn);
 
+  if (todo.isImportant) {
+    const important = createPara("todo-card-important");
+    important.innerText = "Important";
+    container.append(important);
+  }
+
   if (todo.isTrash) {
     const restoreBtn = createBtn("todo-card-restore");
     restoreBtn.append(createSvg("restore"));

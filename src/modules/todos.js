@@ -8,7 +8,7 @@ const todos = [
     title: "Todo-title",
     date: "2022-07-20",
     isTrash: false,
-    prio: false,
+    isImportant: false,
   },
   {
     type: "General",
@@ -16,7 +16,7 @@ const todos = [
     title: "Todo-Title2",
     date: "2022-07-21",
     isTrash: false,
-    prio: false,
+    isImportant: false,
   },
   {
     type: "0",
@@ -24,7 +24,7 @@ const todos = [
     title: "Todo-Title3",
     date: "2022-07-22",
     isTrash: false,
-    prio: false,
+    isImportant: false,
   },
   {
     type: "General",
@@ -32,7 +32,7 @@ const todos = [
     title: "Todo-Title4",
     date: "2022-07-22",
     isTrash: false,
-    prio: false,
+    isImportant: false,
   },
   {
     type: "General",
@@ -40,7 +40,7 @@ const todos = [
     title: "Trash-Todo",
     date: "2022-07-22",
     isTrash: true,
-    prio: true,
+    isImportant: true,
   },
   {
     type: "General",
@@ -48,7 +48,7 @@ const todos = [
     title: "Todo-Title",
     date: "2022-07-20",
     isTrash: false,
-    prio: false,
+    isImportant: false,
   },
   {
     type: "General",
@@ -56,7 +56,7 @@ const todos = [
     title: "Todo-Title",
     date: "2022-07-20",
     isTrash: false,
-    prio: false,
+    isImportant: false,
   },
   {
     type: "General",
@@ -64,7 +64,7 @@ const todos = [
     title: "Todo-Title",
     date: "2022-07-20",
     isTrash: false,
-    prio: false,
+    isImportant: false,
   },
   {
     type: "General",
@@ -72,7 +72,7 @@ const todos = [
     title: "Todo-Title",
     date: "2022-07-20",
     isTrash: false,
-    prio: false,
+    isImportant: false,
   },
   {
     type: "General",
@@ -80,7 +80,7 @@ const todos = [
     title: "Todo-Title",
     date: "2022-07-20",
     isTrash: false,
-    prio: false,
+    isImportant: false,
   },
   {
     type: "General",
@@ -88,7 +88,7 @@ const todos = [
     title: "Todo-Title",
     date: "2022-07-20",
     isTrash: false,
-    prio: false,
+    isImportant: false,
   },
   {
     type: "General",
@@ -96,7 +96,7 @@ const todos = [
     title: "Todo-Title",
     date: "2022-07-20",
     isTrash: false,
-    prio: false,
+    isImportant: false,
   },
   {
     type: "General",
@@ -104,18 +104,18 @@ const todos = [
     title: "Todo-Title",
     date: "2022-07-20",
     isTrash: false,
-    prio: false,
+    isImportant: false,
   },
 ];
 
-const todoFactory = (type, title, date, prio) => {
+const todoFactory = (type, title, date, isImportant) => {
   const checked = false;
   const isTrash = false;
-  return { title, date, type, checked, prio, isTrash };
+  return { title, date, type, checked, isImportant, isTrash };
 };
 
-const createTodo = (type, title, date, prio) => {
-  const newTodo = todoFactory(type, title, date, prio);
+const createTodo = (type, title, date, isImportant) => {
+  const newTodo = todoFactory(type, title, date, isImportant);
   todos.push(newTodo);
   console.log(todos);
   renderTodos();
@@ -131,17 +131,17 @@ const removeTodo = (todo) => {
   }
 };
 
-const editTodo = (index, title, date, prio) => {
+const editTodo = (index, title, date, isImportant) => {
   const currentTodo = todos[index];
   currentTodo.title = title;
   currentTodo.date = date;
-  currentTodo.prio = prio;
+  currentTodo.isImportant = isImportant;
   renderTodos();
 };
 
 const updateStatus = (index, value) => {
   todos[index].checked = value;
-  renderTodos();
+  setTimeout(renderTodos(), 2000);
 };
 
 const removeAllProjectTodos = (project) => {
@@ -201,7 +201,7 @@ const filterTodos = (currentPage) => {
           return (
             todo.type === currentPage &&
             todo.isTrash === false &&
-            todo.prio === true &&
+            todo.isImportant === true &&
             todo.checked === false
           );
         }
