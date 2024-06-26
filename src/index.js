@@ -27,7 +27,9 @@ mobileNavBtn.addEventListener("click", () => {
 
 navLinks.forEach((link) => {
   link.addEventListener("click", () => {
-    console.log(link.innerText);
+    document.querySelector(".header").classList.remove("is-active");
+    document.querySelector(".main-container").classList.remove("is-active");
+
     switch (link.innerText) {
       case "General":
         buildGeneral();

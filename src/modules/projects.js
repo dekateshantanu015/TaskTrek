@@ -26,7 +26,7 @@ const saveProjects = () => {
 };
 
 const projectFactory = (title, desc) => {
-  isTrash = false;
+  const isTrash = false;
   return { title, desc, isTrash };
 };
 
@@ -35,6 +35,10 @@ const createProject = (title, desc) => {
   projects.push(newProject);
   console.log(projects);
   renderProjectNav();
+  buildProjectPage(
+    projects[projects.length - 1],
+    projects[projects.length - 1].iD
+  );
 };
 
 const editProject = (project, title, desc) => {
