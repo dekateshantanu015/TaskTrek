@@ -29,6 +29,25 @@
     --shadow-primary: 0 0 15px hsl(0 0% 0% / 0.25);
 }
 
+/* Custom scrollbar for webkit browsers */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--clr-bg-accent);
+    border-radius: 100vmax;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--clr-btn-primary);
+    border-radius: 100vmax;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--clr-btn-accent);
+}
+
 body {
     font-size: var(--fs-400);
     font-weight: var(--fw-400);
@@ -104,6 +123,7 @@ body {
 #projects-list {
     flex-grow: 1;
     overflow-y: auto;
+    overflow-y: overlay;
     margin-right: -1rem;
 }
 

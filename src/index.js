@@ -7,8 +7,6 @@ import {
 } from "./modules/build-pages";
 import { openProjectModal } from "./modules/modal";
 import { renderProjectNav } from "./modules/projects";
-import "simplebar";
-import "simplebar/dist/simplebar.css";
 import "./reset.css";
 import "./styles.css";
 
