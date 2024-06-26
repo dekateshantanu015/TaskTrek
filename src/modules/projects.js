@@ -3,23 +3,15 @@ import { createNavItem, createProjectCard } from "./create-dom-elements";
 import { removeAllProjectTodos } from "./todos";
 
 const LOCAL_STORAGE_PROJECTS_KEY = "todolist.projects";
-const projects =
-  JSON.parse(localStorage.getItem(LOCAL_STORAGE_PROJECTS_KEY)) || [];
-
-// const projects = [
-//   { title: "Project-Title", desc: "Project-One", isTrash: false },
-//   { title: "Project-Title2", desc: "Project-Two", isTrash: true },
-//   { title: "Project-Title3", desc: "Project-Three", isTrash: false },
-//   { title: "Test1", desc: "Project Three", isTrash: false },
-//   { title: "Test2", desc: "Project Three", isTrash: false },
-//   { title: "Test3", desc: "Project Three", isTrash: false },
-//   { title: "Test4", desc: "Project Three", isTrash: false },
-//   { title: "Test5", desc: "Project Three", isTrash: false },
-//   { title: "Test6", desc: "Project Three", isTrash: false },
-//   { title: "Test7", desc: "Project Three", isTrash: false },
-//   { title: "Test8", desc: "Project Three", isTrash: false },
-//   { title: "Test9", desc: "Project Three", isTrash: false },
-// ];
+const projects = JSON.parse(
+  localStorage.getItem(LOCAL_STORAGE_PROJECTS_KEY)
+) || [
+  {
+    title: "Demo Project",
+    desc: "This is a demo project with some filler content, feel free to remove it!",
+    isTrash: false,
+  },
+];
 
 const saveProjects = () => {
   localStorage.setItem(LOCAL_STORAGE_PROJECTS_KEY, JSON.stringify(projects));
@@ -59,8 +51,6 @@ const removeProject = (project, index) => {
     renderProjectNav();
     buildGeneral();
   }
-  console.log(projects);
-  renderProjectNav();
 };
 
 const restoreProject = (project) => {
@@ -85,7 +75,7 @@ const renderProjectNav = () => {
 
 const renderTrashProjects = () => {
   const projectContainer = document.querySelector(".project-container");
-  projectContainer.innerText = "";
+  projectContainer.textContent = "";
   projects.forEach((project, index) => {
     if (project.isTrash) createProjectCard(project, index);
   });

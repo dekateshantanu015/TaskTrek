@@ -2,114 +2,24 @@ import { createTodoCard } from "./create-dom-elements";
 import { format, compareAsc, addDays, eachDayOfInterval } from "date-fns";
 
 const LOCAL_STORAGE_TODO_KEY = "todolist.todos";
-const todos = JSON.parse(localStorage.getItem(LOCAL_STORAGE_TODO_KEY)) || [];
-
-// const todos = [
-//   {
-//     type: "General",
-//     checked: false,
-//     title: "Todo-title",
-//     date: "2022-07-20",
-//     isTrash: false,
-//     isImportant: false,
-//   },
-//   {
-//     type: "General",
-//     checked: false,
-//     title: "Todo-Title2",
-//     date: "2022-07-21",
-//     isTrash: false,
-//     isImportant: false,
-//   },
-//   {
-//     type: "0",
-//     checked: false,
-//     title: "Todo-Title3",
-//     date: "2022-07-22",
-//     isTrash: false,
-//     isImportant: false,
-//   },
-//   {
-//     type: "General",
-//     checked: false,
-//     title: "Todo-Title4",
-//     date: "2022-07-22",
-//     isTrash: false,
-//     isImportant: false,
-//   },
-//   {
-//     type: "General",
-//     checked: false,
-//     title: "Trash-Todo",
-//     date: "2022-07-22",
-//     isTrash: true,
-//     isImportant: true,
-//   },
-//   {
-//     type: "General",
-//     checked: false,
-//     title: "Todo-Title",
-//     date: "2022-07-20",
-//     isTrash: false,
-//     isImportant: false,
-//   },
-//   {
-//     type: "General",
-//     checked: false,
-//     title: "Todo-Title",
-//     date: "2022-07-20",
-//     isTrash: false,
-//     isImportant: false,
-//   },
-//   {
-//     type: "General",
-//     checked: false,
-//     title: "Todo-Title",
-//     date: "2022-07-20",
-//     isTrash: false,
-//     isImportant: false,
-//   },
-//   {
-//     type: "General",
-//     checked: false,
-//     title: "Todo-Title",
-//     date: "2022-07-20",
-//     isTrash: false,
-//     isImportant: false,
-//   },
-//   {
-//     type: "General",
-//     checked: false,
-//     title: "Todo-Title",
-//     date: "2022-07-20",
-//     isTrash: false,
-//     isImportant: false,
-//   },
-//   {
-//     type: "General",
-//     checked: false,
-//     title: "Todo-Title",
-//     date: "2022-07-20",
-//     isTrash: false,
-//     isImportant: false,
-//   },
-//   {
-//     type: "General",
-//     checked: false,
-//     title: "Todo-Title",
-//     date: "2022-07-20",
-//     isTrash: false,
-//     isImportant: false,
-//   },
-//   {
-//     type: "General",
-//     checked: false,
-//     title: "Todo-Title",
-//     date: "2022-07-20",
-//     isTrash: false,
-//     isImportant: false,
-//   },
-// ];
+const todos = JSON.parse(localStorage.getItem(LOCAL_STORAGE_TODO_KEY)) || [
+  {
+    type: "General",
+    checked: false,
+    title: "Welcome to my Todo App! 😃",
+    date: "1000-01-01",
+    isImportant: true,
+    isTrash: false,
+  },
+  {
+    type: "0",
+    checked: false,
+    title: "Go to the store",
+    date: format(new Date(), "yyyy-MM-dd"),
+    isImportant: false,
+    isTrash: false,
+  },
+];
 
 const saveTodos = () => {
   localStorage.setItem(LOCAL_STORAGE_TODO_KEY, JSON.stringify(todos));

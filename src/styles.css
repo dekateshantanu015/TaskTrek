@@ -496,35 +496,6 @@ body {
     }
 }
 
-/* @media screen and (max-width: 550px) {
-    .project-title-container {
-        grid-template-columns: 1fr max-content;
-    }
-
-    .project-title {
-        font-size: clamp(1.375rem, 0.7269rem + 3.7037vw, 2rem);
-        grid-row: span 3;
-    }
-
-    .project-delete {
-        grid-row: 1;
-        grid-column: 2 / 3;
-    }
-
-    .todo-card-type {
-        right: 0;
-        border-radius: 0 1rem 0 1rem;
-    }
-
-    .todo-card-input {
-        grid-row: span 2;
-    }
-
-    .todo-card-title {
-        grid-row: span 3;
-    }
-} */
-
 /*##############################
             MODAL
 ##############################*/
