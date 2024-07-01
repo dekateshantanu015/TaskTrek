@@ -14,8 +14,6 @@ const navBtn = document.querySelector(".header-nav-btn");
 const navLinks = document.querySelectorAll(".header-main-nav-link");
 const mobileNavBtn = document.querySelector(".mobile-nav-btn");
 
-console.log(mobileNavBtn);
-
 navBtn.addEventListener("click", () => {
   openProjectModal();
 });

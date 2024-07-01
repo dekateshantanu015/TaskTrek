@@ -25,7 +25,6 @@ const projectFactory = (title, desc) => {
 const createProject = (title, desc) => {
   const newProject = projectFactory(title, desc);
   projects.push(newProject);
-  console.log(projects);
   renderProjectNav();
   buildProjectPage(
     projects[projects.length - 1],
